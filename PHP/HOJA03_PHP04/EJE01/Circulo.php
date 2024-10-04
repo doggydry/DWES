@@ -8,7 +8,7 @@
 <body>
 <?php 
 class Circulo {
-    private $radio;
+    public $radio;
 
     // constructor de la clase
     public function __construct($radio) {
