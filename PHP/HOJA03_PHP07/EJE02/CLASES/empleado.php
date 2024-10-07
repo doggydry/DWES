@@ -1,7 +1,7 @@
 <?php 
 namespace CLASES;
 
-use TRAITS\informacionLaboral;
+use TRAITS\InformacionLaboral;
 use TRAITS\informacionPersonal;
 
 class Empleado {
@@ -11,4 +11,3 @@ class Empleado {
         return $this->getInformacionLaboral() . "\n" . $this->getInformacionPersonal();
     }
 }
-?>
