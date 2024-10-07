@@ -1,0 +1,22 @@
+<?php 
+namespace TRAITS;
+
+trait InformacionLaboral {
+    private $codigoEmpleado;
+    private $salario;
+
+    public function setInformacionLaboral($codigoEmpleado, $salario) {
+        $this->codigoEmpleado = $codigoEmpleado;
+        $this->salario = $salario;
+    }
+
+    public function getInformacionLaboral() {
+        return "Código de Empleado: {$this->codigoEmpleado}, Salario: {$this->salario}";
+    }
+
+    public function actualizarInfo($codigoEmpleado, $salario) {
+        $this->setInformacionLaboral($codigoEmpleado, $salario);
+    }
+}
+
+?>
