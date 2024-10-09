@@ -1,7 +1,7 @@
 <?php 
 namespace CLASES;
 
-use TRAITS\InformacionLaboral;
+use TRAITS\informacionLaboral;
 use TRAITS\informacionPersonal;
 
 class Empleado {
