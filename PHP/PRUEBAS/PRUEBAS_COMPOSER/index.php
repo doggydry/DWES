@@ -16,4 +16,3 @@ $password = $generator->generatePassword();
 
 echo $password;
 
-?>
