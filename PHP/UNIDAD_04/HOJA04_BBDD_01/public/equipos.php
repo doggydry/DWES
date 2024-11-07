@@ -5,8 +5,6 @@ require_once dirname(__DIR__) . "/vendor/autoload.php";
 use Liga\Clases\FuncionesBD;
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,14 +17,15 @@ use Liga\Clases\FuncionesBD;
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
 
-<body>
+<body class = container>
     <?php
-    $equipos = FuncionesBD::getEquipos();
-
-    foreach ($equipos as $nombre_equipo) {
-        echo '<div>' . $nombre_equipo . '<div>';
-    }
+    $jugadores = FuncionesBD::getEquipos();
     ?>
+    <ul>
+        <?php foreach ($jugadores as $jugador): ?>
+            <li><?php echo $jugador ?></li>
+        <?php endforeach ?>
+    </ul>
 
 </body>
 
