@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="conversor">
+        <h1>Conversor de monedas</h1>
+        <hr>
+        <div class="form">
+            <form name="input" action="index.php" method="post">
+                <label for="cantidad">Cantidad:*</label>
+                <input type="number" name="cantidad" id="cantidad" value="cantidad">
+                <br>
+                    <hr>
+                    <label for="origen">Origen:* </label>
+                    <select name="opcionesOrigen">
+                        <option value="euros">euros</option>
+                        <option value="dolares">dolares</option>
+                        <option value="pesos">Peso Mexicano</option>
+                    </select>
+                    <hr>
+                    <label for="destino">Destino:* </label>
+                    <select name="opcionesDestino">
+                        <option value="euros">euros</option>
+                        <option value="dolares">dolares</option>
+                        <option value="pesos">Peso Mexicano</option>
+                    </select>
+                    <hr>
+                        <input type="submit" class="convertirBtn" value="Convertir">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
