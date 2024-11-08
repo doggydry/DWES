@@ -37,23 +37,23 @@ use Liga\Clases\FuncionesBD;
             $jugadores = FuncionesBD::getJugadores($_POST['equipo']);
             $peso = FuncionesBD::getPeso($_POST['equipo']);
         ?>
-            <table>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Peso</th>
+            </tr>
                 <tr>
                 <?php foreach ($jugadores as $jugador): ?>
                     <td><?php echo $jugador ?></td>
                 <?php endforeach ?> 
                 </tr>
-            </table>
-            <table>
                 <tr>
             <?php foreach ($peso as $pesos): ?>
-                    <td><?php echo $pesos ?></td>
+                    <td><?php echo $pesos?></td>
                 <?php endforeach ?>
                 </tr>
         </table>
         <?php endif ?>
-        
-
     </main>
 </body>
 
