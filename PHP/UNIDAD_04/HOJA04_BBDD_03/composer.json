@@ -1,9 +1,9 @@
 {
-    "name": "nesto/hoja04_bbdd_02",
+    "name": "nesto/hoja04_bbdd_03",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Libros\\": "src/"
+             "Funicular\\": "src/"
         }
     },
     "authors": [

@@ -36,11 +36,45 @@ class FuncionesBD
                 $query = "SELECT nombre,peso FROM jugadores WHERE nombre_equipo='{$equipo}'";
                 $stmt = $conexion->query($query);
 
-                $jugadores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $jugadores = $stmt->fetchAll(PDO::FETCH_COLUMN);
             } catch (PDOException $e) {
                 echo "Error en la consulta: " . $e->getMessage();
             }
         }
         return  $jugadores;
+    }
+
+    /**S
+     *! MODIFICAR ESTA FUNCION
+     */
+    public static function darBaja(array $jugadorData): array
+    {
+        $conexion = ConexionBD::getConexion();
+        $jugadorDeBaja = [];
+        if ($conexion instanceof PDO) {
+            try {
+
+                $query = 'INSERT INTO jugadores ( nombre, procedencia, altura, peso, posicion) 
+                          VALUES (:nombre, :procedencia, :altura, :peso, :posicion)';
+
+
+                $stmt = $conexion->prepare($query);
+
+                $stmt->bindValue(':nombre', $jugadorData['nombre'], PDO::PARAM_STR);
+                $stmt->bindValue(':procedencia', $jugadorData['procedencia'], PDO::PARAM_STR);
+                $stmt->bindValue(':altura', $jugadorData['altura'], PDO::PARAM_INT);
+                $stmt->bindValue(':peso', $jugadorData['peso'], PDO::PARAM_INT);
+                $stmt->bindValue(':posicion', $jugadorData['posicion'], PDO::PARAM_STR);
+
+                if ($stmt->execute()) {
+                    $jugadorDeBaja['status'] = 'Jugador dado de baja correctamente';
+                } else {
+                    $jugadorDeBaja['status'] = 'Error al dar de baja al jugador';
+                }
+            } catch (PDOException $e) {
+                $jugadorDeBaja['status'] = 'Error: ' . $e->getMessage();
+            }
+        }
+        return $jugadorDeBaja;
     }
 }

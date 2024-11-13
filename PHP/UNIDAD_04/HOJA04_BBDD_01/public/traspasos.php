@@ -70,6 +70,17 @@ use Liga\Clases\FuncionesBD;
                 <input type="submit" name="actualizar" value="Actualizar">
             </form>
         <?php endif ?>
+        <?php if (isset($_POST['nombre'], $_POST['procedencia'], $_POST['altura'], $_POST['peso'], $_POST['posicion'])){
+            $resultado = FuncionesBD::darBaja([
+                'nombre' => $_POST['nombre'],
+                'procedencia' => $_POST['procedencia'],
+                'altura' => $_POST['altura'],
+                'peso' => $_POST['peso'],
+                'posicion' => $_POST['posicion']
+            ]);
+            echo $resultado['status'];
+        }
+            ?>
     </body>
 </main>
 
