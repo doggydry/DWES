@@ -44,7 +44,7 @@ class FuncionesBD
         return  $jugadores;
     }
 
-    /**S
+    /**
      *! MODIFICAR ESTA FUNCION
      */
     public static function darBaja(array $jugadorData): array
