@@ -1,7 +1,7 @@
 <?php
 namespace Supermercado\Clases;
 
-class Producto{
+abstract class Producto{
     protected $codigo;
     protected $precio;
     protected $nombre;

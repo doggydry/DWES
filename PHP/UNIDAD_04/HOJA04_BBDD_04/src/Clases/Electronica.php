@@ -23,5 +23,6 @@ class Electronica extends Producto{
     {
         return parent::__toString().",Plazo de Garantia: ".$this->getGarantia();
     }
+    
 
 }    

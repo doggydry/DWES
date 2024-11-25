@@ -2,12 +2,11 @@
 namespace Hospital\Clases;
 
 class Turno {
-    private $id;
-    private $descripcion;
+    private int $id;
+    private string $descripcion;
+    private int $horario;
 
-    private $horario;
-
-    public function __construct($id, $descripcion, $horario) {
+    public function __construct(int $id,string $descripcion, int $horario) {
         $this->id = $id;
         $this->descripcion = $descripcion;
         $this->horario = $horario;
@@ -20,7 +19,7 @@ class Turno {
         return $this->horario;
     }
 
-    public function setDescripcion($nuevoHorario){
+    public function setDescripcion(int $nuevoHorario):int{
         if ($nuevoHorario===$this->horario){
             return 'El horario no puede ser igual que el aneterior';
         } else{

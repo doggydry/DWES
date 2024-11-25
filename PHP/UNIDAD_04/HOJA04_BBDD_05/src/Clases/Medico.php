@@ -2,9 +2,9 @@
 namespace Hospital\Clases;
 
 abstract class Medico{
-    private $codigo;
-    private $nombre;
-    private $edad;
+    private int $codigo;
+    private string $nombre;
+    private int $edad;
     private $turno;
 
     public function __construct($codigo, $nombre, $edad, Turno $turno) {  

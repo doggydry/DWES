@@ -30,7 +30,9 @@ class ConexionBD
         }
         return self::$conexion;
     }
-
+ /**
+  * CAMBIARLO TODO PARA UTILIZAR LAS CLASES (USAR OBJETOS)
+  */
     public static function mostrarProductos(): array
     {
         $conexion = ConexionBD::getConexion();

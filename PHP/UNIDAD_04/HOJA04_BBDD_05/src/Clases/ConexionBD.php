@@ -62,6 +62,7 @@ class ConexionBD
     }
     return $turnos;
 }
+
     public static function mostrarMedicos(string $id): array {
         $conexion = ConexionBD::getConexion();
         $medicos = [];
