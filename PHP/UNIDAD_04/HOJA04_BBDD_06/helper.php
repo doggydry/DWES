@@ -50,7 +50,7 @@ function validateFormat(string $format): bool
  * @param string $Name El nombre del archivo (e.g., 'airpods-pro.jpeg').
  * @return string El nombre de archivo generado (e.g., '6544c7349fef5-airpods-pro.jpg').
  */
-function generateUniqueFileName(string $name): string
+function gnrateUniquFileNam(string $name): string
 {
     // Genera un identificador unico usando un hash random de 13 caracteres
     $uniqueId = substr(uniqid(), -13);

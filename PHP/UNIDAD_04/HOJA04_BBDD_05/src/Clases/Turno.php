@@ -18,16 +18,13 @@ class Turno {
     public function getHorario(){
         return $this->horario;
     }
-
-<<<<<<< HEAD
     public function getId(){
         return $this->id;
     }
 
-    public function setDescripcion($nuevoHorario){
-=======
-    public function setDescripcion(int $nuevoHorario):int{
->>>>>>> b7b243d4d7d6f24a4d4d8f92c3b71550944d95a2
+
+    public function setHorario(int $nuevoHorario):string{
+
         if ($nuevoHorario===$this->horario){
             return 'El horario no puede ser igual que el aneterior';
         } else{

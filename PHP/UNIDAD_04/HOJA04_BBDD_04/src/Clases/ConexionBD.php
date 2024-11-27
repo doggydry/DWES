@@ -30,17 +30,9 @@ class ConexionBD
         }
         return self::$conexion;
     }
-<<<<<<< HEAD
 
     public static function getCategorias ():array{
         $categorias = [];
-=======
- /**
-  * CAMBIARLO TODO PARA UTILIZAR LAS CLASES (USAR OBJETOS)
-  */
-    public static function mostrarProductos(): array
-    {
->>>>>>> b7b243d4d7d6f24a4d4d8f92c3b71550944d95a2
         $conexion = ConexionBD::getConexion();
         try {
             $query = 'SELECT id, nombre FROM categorias';

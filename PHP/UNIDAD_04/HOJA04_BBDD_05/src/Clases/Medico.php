@@ -5,7 +5,7 @@ abstract class Medico{
     private int $codigo;
     private string $nombre;
     private int $edad;
-    private $turno;
+    private Turno $turno;
 
     public function __construct($codigo, $nombre, $edad, Turno $turno) {  
         $this->codigo = $codigo;

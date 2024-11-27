@@ -3,9 +3,9 @@ namespace Hospital\Clases;
 
 class Familia extends Medico{
 
-    private $numPacientes;
+    private int $numPacientes;
 
-    public function __construct($codigo, $nombre, $edad, $turno,$numPacientes){
+    public function __construct($codigo, $nombre, $edad, Turno $turno,$numPacientes){
         parent::__construct($codigo, $nombre, $edad, $turno);
         $this->numPacientes=$numPacientes;
     }
