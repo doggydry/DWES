@@ -21,6 +21,7 @@ class Alimentacion extends Producto
     {
         return $this->anioCaducidad;
     }
+    
     public function setMesCaducidad($nuevoMesCaducidad)
     {
         if ($nuevoMesCaducidad === $this->mesCaducidad) {

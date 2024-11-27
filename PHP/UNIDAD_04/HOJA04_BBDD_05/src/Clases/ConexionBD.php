@@ -75,6 +75,25 @@ class ConexionBD
     }
     return $turnos;
 }
+<<<<<<< HEAD
    
+=======
+
+    public static function mostrarMedicos(string $id): array {
+        $conexion = ConexionBD::getConexion();
+        $medicos = [];
+        if ($conexion instanceof PDO) {
+            try {
+                $query = "SELECT nombre, especialidad FROM medicos WHERE turno_id = $id";
+                $stmt = $conexion->query($query);
+
+                $medicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Error en la consulta" . $e->getMessage();
+            }
+        }
+        return $medicos;
+    }
+>>>>>>> b7b243d4d7d6f24a4d4d8f92c3b71550944d95a2
 
 }

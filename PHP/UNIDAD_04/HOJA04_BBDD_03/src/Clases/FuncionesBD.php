@@ -31,6 +31,7 @@ class FuncionesBD
             }
         }
     }
+
     public static function mostrarPlazas(): array
     {
         $conexion = ConexionBD::getConexion();
@@ -100,21 +101,16 @@ class FuncionesBD
         $conexion = ConexionBD::getConexion();
 
         try {
-            // Establecer el modo de error de PDO a excepción
+
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // Iniciar una transacción para asegurar la integridad de los datos
             $conexion->beginTransaction();
-
-            // Recorrer el array de precios y actualizar cada plaza
             foreach ($precios as $numero_plaza => $precio) {
-                // Validar que el precio sea un número positivo
+   
                 if ($precio <= 0) {
                     throw new Exception("El precio para la plaza {$numero_plaza} no es válido.");
                 }
-
                 $preciop = (float)$precio;
-                // Consulta para actualizar el precio de la plaza
+       
                 $queryUpdate = "UPDATE plazas SET precio = :precio WHERE numero = :numero_plaza";
                 $stmt = $conexion->prepare($queryUpdate);
                 $stmt->bindParam(':precio', $precio, PDO::PARAM_INT);
@@ -122,11 +118,9 @@ class FuncionesBD
                 $stmt->execute();
             }
 
-            // Confirmar la transacción
             $conexion->commit();
             echo "Precios actualizados con éxito.";
         } catch (Exception $e) {
-            // Si ocurre algún error, deshacer la transacción
             if ($conexion->inTransaction()) {
                 $conexion->rollBack();
             }

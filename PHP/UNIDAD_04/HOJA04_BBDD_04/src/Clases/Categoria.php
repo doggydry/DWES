@@ -25,6 +25,8 @@ class Categoria
             return "No puede tener el mismo nombre";
         } else {
            return  $this->nombre = $nuevoNombre;
+
+
         }
     }
     public function __toString(){

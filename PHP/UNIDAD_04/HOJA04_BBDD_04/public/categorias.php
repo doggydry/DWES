@@ -25,9 +25,15 @@ use Supermercado\Clases\ConexionBD;
         <select name="categoria" id="categoria">
             <option value="1" disabled selected>Seleccione la categoria</option>
             <?php foreach ($categorias as $categoria): ?>
+<<<<<<< HEAD
                 <option value=<?php echo $categoria->getNombre() ?> <?php  if (isset($_POST['categoria'])) echo $_POST['categoria']===$categoria->getNombre() ? 'selected' : '' ?>> <?php echo $categoria->getNombre() ?> </option>
 
+=======
+                <option value="<?php echo $categoria ?>"> <?php ?></option>  
+>>>>>>> b7b243d4d7d6f24a4d4d8f92c3b71550944d95a2
             <?php endforeach; ?>
+            <option value=<?php echo $nombre_equipo ?> <?php  if (isset($_POST['equipo'])) echo $_POST['equipo']===$nombre_equipo ? 'selected' : '' ?>> <?php echo $nombre_equipo ?> </option>
+
         </select>
         <input type="submit" name="mostrar" value="Mostrar">
     </form>
