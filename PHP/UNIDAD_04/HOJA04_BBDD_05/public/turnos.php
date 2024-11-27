@@ -30,7 +30,7 @@ use Hospital\Clases\ConexionBD;
     </form>
     
     <?php if (isset($_POST["idTurno"])): 
-        $medicos = ConexionBD::mostrarMedicos($_POST["idTurno"]);
+        $medicos = ConexionBD::getMedicos();
     ?>
     <h2>Medicos del turno</h2>
     <form action="turnos.php" method="post">

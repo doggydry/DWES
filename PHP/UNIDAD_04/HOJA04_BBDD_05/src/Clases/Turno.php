@@ -20,6 +20,10 @@ class Turno {
         return $this->horario;
     }
 
+    public function getId(){
+        return $this->id;
+    }
+
     public function setDescripcion($nuevoHorario){
         if ($nuevoHorario===$this->horario){
             return 'El horario no puede ser igual que el aneterior';

@@ -4,7 +4,7 @@ require_once dirname(__DIR__) . "/vendor/autoload.php";
 
 use Supermercado\Clases\ConexionBD;
 
-$productos = ConexionBD::mostrarProductos();
+$productos = ConexionBD::getProductos();
 ?>
 <!DOCTYPE html>
 <html lang="en">

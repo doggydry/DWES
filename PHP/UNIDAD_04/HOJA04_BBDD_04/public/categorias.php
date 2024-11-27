@@ -17,7 +17,7 @@ use Supermercado\Clases\ConexionBD;
 <body class="container">
     <h1>Categorias</h1>
     <?php
-    $categorias = ConexionBD::mostrarCategoria();
+    $categorias = ConexionBD::getCategorias();
     ?>
     <hr>
     <form action="categorias.php" method="post">
@@ -25,15 +25,17 @@ use Supermercado\Clases\ConexionBD;
         <select name="categoria" id="categoria">
             <option value="1" disabled selected>Seleccione la categoria</option>
             <?php foreach ($categorias as $categoria): ?>
-                <option value="<?php echo $categoria ?>"> <?php echo $categoria ?></option>
+                <option value=<?php echo $categoria->getNombre() ?> <?php  if (isset($_POST['categoria'])) echo $_POST['categoria']===$categoria->getNombre() ? 'selected' : '' ?>> <?php echo $categoria->getNombre() ?> </option>
+
             <?php endforeach; ?>
         </select>
         <input type="submit" name="mostrar" value="Mostrar">
     </form>
     
-    <?php if (isset($_POST['categoria']) && !empty($_POST['categoria'])) {
-        $productos = ConexionBD::mostrarProductosDeCategoria($_POST['categoria']);
-    } 
+    <?php if (isset($_POST['categoria'])): 
+        $productos = ConexionBD::getProductos();
+        $categoria = $_POST['categoria'];
+        $productosSeleccionados = array_filter($productos,function($producto) use($categoria){return $producto->getCategoria()->getNombre()===$categoria;})
     ?>
     <h3>Productos</h3>
     <table>
@@ -42,14 +44,14 @@ use Supermercado\Clases\ConexionBD;
             <td>Nombre</td>
             <td>Categoria</td>
         </tr>
-       <?php foreach ($productos as $producto):?>
+       <?php foreach ($productosSeleccionados as $productoSeleccionado):?>
         <tr>
-        <td><?php echo $producto['precio']?> </td>
-        <td><?php echo $producto['nombre']?> </td>
-        <td><?php echo $producto['categoria_id']?> </td>
+        <td><?php echo $productoSeleccionado->getPrecio()?> </td>
+        <td><?php echo $productoSeleccionado->getNombre()?> </td>
+        <td><?php echo $productoSeleccionado->getCategoria()->getNombre()?> </td>
     </tr>
     <?php endforeach;?>
+    <?php endif;?>
     </table>
 </body>
-
 </html>

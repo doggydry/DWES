@@ -33,13 +33,24 @@ class ConexionBD
 
     public static function getMedicos(): array
     {
-        $conexion = ConexionBD::getConexion();
         $medicos = [];
-
+        $turnos = ConexionBD::getTurnos();
+        $conexion = ConexionBD::getConexion();
         try {
-            $query = 'SELECT nombre, especialidad, turno_id FROM medicos';
+            $query = 'SELECT medicos.nombre, medicos.especialidad id, turno_id,descripcion, horario FROM medicos 
+            LEFT JOIN turnos on turnos.id = medicos.turno_id';
             $stmt = $conexion->query($query);
-            $medicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            while ($medico=$stmt->fetch(PDO::FETCH_OBJ)){
+                if ($medico->numPacientes){
+                    $turno = $turnos[$medico->id];
+                    $medico = new Urgencia($medico->codigo, $medico->nombre,$medico->edad, $turno, $medico->unidad);
+                    $medicos [] = $medico;
+                } else {
+                    $turno = $turnos[$medico->id];
+                    $medico = new Familia($medico->codigo, $medico->nombre,$medico->edad, $turno, $medico->numPacientes);
+                    $medicos [] = $medico;
+                }
+            }
         } catch (PDOException $e) {
             echo 'Error en al consulta' . $e->getMessage();
         }
@@ -47,35 +58,23 @@ class ConexionBD
     }
 
     public static function getTurnos ():array{
-        $conexion = ConexionBD::getConexion();
         $turnos = [];
+        $conexion = ConexionBD::getConexion();
 
         if ( $conexion instanceof PDO ) {
             try {
             $query = "SELECT descripcion, horario, id FROM turnos";
             $stmt = $conexion->query($query);
-            
-            $turnos = $stmt->fetchAll(PDO::FETCH_COLUMN);    
+            while ($turno=$stmt->fetch(PDO::FETCH_OBJ)){
+                $turno = new Turno ($turno->id, $turno->descripcion, $turno->horario);
+                $turnos[$turno->getId()] = $turno;
+            }
         } catch (PDOException $e) {
             echo "Error al realizar la consulta". $e->getMessage();
         }
     }
     return $turnos;
 }
-    public static function mostrarMedicos(string $id): array {
-        $conexion = ConexionBD::getConexion();
-        $medicos = [];
-        if ($conexion instanceof PDO) {
-            try {
-                $query = "SELECT nombre, especialidad FROM medicos WHERE turno_id = $id";
-                $stmt = $conexion->query($query);
-
-                $medicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Error en la consulta" . $e->getMessage();
-            }
-        }
-        return $medicos;
-    }
+   
 
 }

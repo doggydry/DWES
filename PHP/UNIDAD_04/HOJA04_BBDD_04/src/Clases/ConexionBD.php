@@ -31,57 +31,49 @@ class ConexionBD
         return self::$conexion;
     }
 
-    public static function mostrarProductos(): array
-    {
+    public static function getCategorias ():array{
+        $categorias = [];
         $conexion = ConexionBD::getConexion();
-        $productos = [];
-
-        if ($conexion instanceof PDO) {
-            try {
-                $query = "SELECT precio, nombre, categoria_id FROM productos";
-                $stmt = $conexion->query($query);
-                $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Error en la consulta" . $e->getMessage();
+        try {
+            $query = 'SELECT id, nombre FROM categorias';
+            $stmt = $conexion->query($query);
+            while ($categoria=$stmt->fetch(PDO::FETCH_OBJ)){
+                $categoria = new Categoria ($categoria->id, $categoria->nombre);
+                $categorias[$categoria->getId()] = $categoria;
             }
+        } catch(PDOException $e){
+
+        }
+        return $categorias;
+    }
+    public static function getProductos():array
+    {
+        $productos = [];
+        $categorias = ConexionBD::getCategorias();
+        $conexion = ConexionBD::getConexion();
+        try {
+            $query = 'SELECT productos.codigo, productos.nombre, precio, categoria_id, mesCaducidad, anioCaducidad,plazoGarantia FROM productos 
+            LEFT JOIN alimentaciones on productos.codigo = alimentaciones.codigo 
+            LEFT JOIN electronicas on  productos.codigo = electronicas.codigo';
+            $stmt = $conexion->query($query);
+             while ($producto=$stmt->fetch(PDO::FETCH_OBJ)){
+                if ($producto->plazoGarantia){
+                    $categoria = $categorias[$producto->categoria_id];
+                    $producto = new Electronica($producto->codigo, $producto->precio, $producto->nombre, $categoria, $producto->plazoGarantia);
+                    $productos[] = $producto;
+                }else {
+                    $categoria = $categorias[$producto->categoria_id];
+                    $producto = new Alimentacion($producto->codigo, $producto->precio, $producto->nombre, $producto->mesCaducidad, $producto->anioCaducidad, $categoria);
+                    $productos[] = $producto;
+                }
+             }
+
+        } catch(PDOException $e){
+
         }
         return $productos;
+        
     }
-    public static function mostrarCategoria(): array
-    {
-        $conexion = ConexionBD::getConexion();
-        $categoria = [];
-        if ($conexion instanceof PDO) {
-            try {
-                $query = "SELECT nombre FROM categorias";
-                $stmt = $conexion->query($query);
 
-                $categoria = $stmt->fetchAll(PDO::FETCH_COLUMN);
-            } catch (PDOException $e) {
-                echo "Error en la consulta" . $e->getMessage();
-            }
-        }
-        return $categoria;
-    }
-    public static function mostrarProductosDeCategoria($categoria): array
-    {
-        $conexion = ConexionBD::getConexion();
-        $productos = [];
-    
-        if ($conexion instanceof PDO) {
-            try {
-                // Usar una consulta preparada para evitar inyección SQL
-                $query = "SELECT precio, nombre, categoria_id FROM productos WHERE nombre = :categoria";
-                $stmt = $conexion->prepare($query);
-                $stmt->bindParam(':categoria', $categoria, PDO::PARAM_STR);
-                $stmt->execute();
-    
-                $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Error en la consulta: " . $e->getMessage();
-            }
-        }
-        return $productos;
-    }
     
 }

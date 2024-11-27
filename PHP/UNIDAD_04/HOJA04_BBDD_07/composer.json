@@ -1,0 +1,29 @@
+{
+  "name": "llannillo/hoja04_bbdd_06",
+  "description": "ejercicio para agregar productos a la base de datos dwes_06_productos",
+  "type": "project",
+  "require": {
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Product\\": "src/"
+    },
+    "files": [
+      "helper.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "LLANNIILO",
+      "email": "miinllanillo@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "scripts": {
+    "start": [
+      "Composer\\Config::disableProcessTimeout",
+      "php -S localhost:8080 -t public"
+    ]
+  }
+}

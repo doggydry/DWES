@@ -25,9 +25,7 @@ $medicos = ConexionBD::getMedicos();
         </tr>
         <?php foreach ($medicos as $medico):?> 
             <tr>
-                <td><?php echo $medico['nombre'] ?></td>
-                <td><?php echo $medico['especialidad'] ?></td>
-                <td><?php echo $medico['turno_id'] ?></td>
+                <td><?php echo $medico->getNombre() ?></td>
             </tr>
             <?php endforeach;?>
     </table>

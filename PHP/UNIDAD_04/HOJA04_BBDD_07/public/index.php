@@ -32,32 +32,24 @@ set_exception_handler([GlobalHandler::class, 'handlingException']);
 
     if (isset($_GET['error'])) {
         $error = intval($_GET['error']);
-        switch ($error) {
-            case 1:
-                $message = 'Por favor, rellene todos los campos';
-                break;
-            case 2:
-                $message = 'No se puede procesar el archivo';
-                break;
-            case 3:
-                $message = 'El archivo no tiene una extensión válida';
-                break;
-            case 4:
-                $message = 'Por favor, introduce un precio válido';
-                break;
-            case 5:
-                $message = 'No se ha podido guardar el producto en la base de datos';
-                break;
-            default:
-                $message = 'Error desconocido'; // Manejo de error inesperado
-                break;
+        if ($error === 1) {
+            $message = 'Por favor, rellene todos los campos';
+        } else if ($error === 2) {
+            $message = 'No se puede procesar el archivo';
+        } else if ($error === 3) {
+            $message = 'El archivo no tiene una extension valida';
+        } else if ($error === 4) {
+            $message = 'Por favor, introduce un precio valido';
+        } else if ($error === 5) {
+            $message = 'No se ha podido guardar el producto en la base de datos';
         }
     }
-    
 
     if (isset($_GET['success'])) {
         $message = 'El producto ha sido dado de alta correctamente';
     }
+
+
 
     ?>
 
@@ -87,6 +79,7 @@ set_exception_handler([GlobalHandler::class, 'handlingException']);
                 </label>
 
                 <textarea rows="5" name="description" placeholder="Descripcion"></textarea>
+
                 <input type="submit">
 
             </div>
