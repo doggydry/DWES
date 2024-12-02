@@ -23,24 +23,26 @@ use Sesiones\clases\ConexionBD;
         <label for="contrasenia">Contraseña</label>
             <input type="password" name="contrasenia" id="contrasenia" placeholder="Su contraseña" required>
 
-        <label for="rep-contrasenia"></label>
-            <input type="password" name="rep-contrasenia" id="rep-contrasenia" placeholder="Repita su contraseña" required>
+        <label for="rep_contrasenia"></label>
+            <input type="password" name="rep_contrasenia" id="rep_contrasenia" placeholder="Repita su contraseña" required>
         <input type="submit" value="Registrar">
         </form>
 </body>
 </html>
 
 <?php
-// Código para iniciar sesión
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = $_POST['nombre'];
-    $contrasenia = $_POST['contrasenia'];
 
-    if (FuncionesBD::verificarUsuario($nombre, $contrasenia)) {
-        echo "Acceso permitido";
-        // Aquí puedes redirigir a la página protegida
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $usuario = trim($_POST['nombre']);
+    $password = $_POST['contrasenia'];
+
+    if (FuncionesBD::verificarUsuario($usuario, $password)) {
+        session_start();
+        $_SESSION['usuario'] = $usuario;
+        header('Location: PHP/UNIDAD_04/Hoja04_Bbdd_03/public/plazas.php');
+        exit;
     } else {
-        echo "Acceso denegado";
+        echo "Usuario o contraseña incorrectos";
     }
 }
 ?>

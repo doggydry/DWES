@@ -5,12 +5,15 @@ class Familia extends Medico{
 
     private int $numPacientes;
 
-    public function __construct($codigo, $nombre, $edad, Turno $turno,$numPacientes){
-        parent::__construct($codigo, $nombre, $edad, $turno);
+    public function __construct($id, $nombre, $edad, Turno $turno,$numPacientes){
+        parent::__construct($id, $nombre, $edad, $turno);
         $this->numPacientes=$numPacientes;
     }
     public function getnumPacientes(){
         return $this->numPacientes;
+    }
+    public function getEspecialidad(): string {
+        return "Familia";
     }
     public function setNumPacientes($nuevoNumPacientes){
         if ($nuevoNumPacientes === $this->numPacientes){
@@ -21,6 +24,6 @@ class Familia extends Medico{
     }
 
     public function __toString(){
-        return parent::__toString().' Numero de pacientes: '.$this->getnumPacientes();
+        return parent::__toString().'-Numero de pacientes: '.$this->getnumPacientes();
     }
 }

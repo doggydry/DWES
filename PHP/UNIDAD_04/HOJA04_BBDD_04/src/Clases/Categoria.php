@@ -30,6 +30,6 @@ class Categoria
         }
     }
     public function __toString(){
-        return "Nombre: $this->nombre";
+        return $this->nombre;
     }
 }

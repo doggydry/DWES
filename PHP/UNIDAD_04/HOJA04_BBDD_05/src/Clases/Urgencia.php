@@ -6,13 +6,16 @@ class Urgencia extends Medico
 {
     private $unidad;
 
-    public function __construct($codigo, $nombre, $edad, $turno, $unidad)
+    public function __construct($id, $nombre, $edad, $turno, $unidad)
     {
-        parent::__construct($codigo, $nombre, $edad, $turno);
+        parent::__construct($id, $nombre, $edad, $turno);
         $this->unidad = $unidad;
     }
     public function getUnidad(){
         return $this->unidad;
+    }
+    public function getEspecialidad(): string {
+        return "Urgencia";
     }
     public function setUnidad($nuevaUnidad){
         if ($nuevaUnidad === $this->unidad){
@@ -20,5 +23,9 @@ class Urgencia extends Medico
         } else {
             return $this->unidad === $nuevaUnidad;
         }
+    }
+
+    public function __toString(){
+        return parent::__toString().'-'.$this->getUnidad();
     }
 }

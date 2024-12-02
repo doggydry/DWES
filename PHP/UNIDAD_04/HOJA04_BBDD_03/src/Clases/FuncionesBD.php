@@ -109,11 +109,11 @@ class FuncionesBD
                 if ($precio <= 0) {
                     throw new Exception("El precio para la plaza {$numero_plaza} no es válido.");
                 }
-                $preciop = (float)$precio;
+                $precio = (float)$precio;
        
                 $queryUpdate = "UPDATE plazas SET precio = :precio WHERE numero = :numero_plaza";
                 $stmt = $conexion->prepare($queryUpdate);
-                $stmt->bindParam(':precio', $precio, PDO::PARAM_INT);
+                $stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
                 $stmt->bindParam(':numero_plaza', $numero_plaza, PDO::PARAM_INT);
                 $stmt->execute();
             }
