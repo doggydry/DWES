@@ -2,19 +2,19 @@
 namespace Hospital\Clases;
 
 abstract class Medico{
-    private int $codigo;
+    private int $id;
     private string $nombre;
     private int $edad;
     private Turno $turno;
 
-    public function __construct($codigo, $nombre, $edad, Turno $turno) {  
-        $this->codigo = $codigo;
+    public function __construct($id, $nombre, $edad, Turno $turno) {  
+        $this->id = $id;
         $this->nombre = $nombre;
         $this->edad = $edad;
         $this->turno = $turno;
     }
-    public function getCodigo() {
-        return $this->codigo;
+    public function getID() {
+        return $this->id;
     }
     public function getNombre() {
         return $this->nombre;
@@ -50,6 +50,6 @@ abstract class Medico{
     }
     public function __toString()
     {
-        return 'Nombre: '.$this->getNombre().',Edad: '.$this->getEdad().'Turno: '.$this->getTurno();
+        return $this->getNombre().' ('.$this->getEdad().')';
     }
 }

@@ -25,9 +25,9 @@ $productos = ConexionBD::getProductos();
     </tr>
     <?php foreach ($productos as $producto):?>
     <tr>
-        <td><?php echo $producto['precio']?> </td>
-        <td><?php echo $producto['nombre']?> </td>
-        <td><?php echo $producto['categoria_id']?> </td>
+        <td><?php echo $producto->getPrecio()?> </td>
+        <td><?php echo $producto->getNombre()?> </td>
+        <td><?php echo $producto->getCategoria()?> </td>
     </tr>
     <?php endforeach;?>
 </table>

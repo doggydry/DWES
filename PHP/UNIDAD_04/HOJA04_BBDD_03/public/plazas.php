@@ -24,7 +24,7 @@ $plazas = FuncionesBD::mostrarPlazas();
     <hr>
     <form action="plazas.php" method="post">
         <?php foreach ($plazas as $plaza): ?>
-            <label for="numero"><?php echo 'Plaza ' . $plaza['numero'] ?></label>
+            <label for="precio_<?php echo $plaza['numero'];?>"><?php echo 'Plaza ' . $plaza['numero'] ?></label>
             <input type="number" id="precio_<?php echo $plaza['numero'];?>" name="precio[<?php echo $plaza['numero'];?>]" value="<?php echo $plaza['precio'];?>" step="any">
         <?php endforeach; ?>
         <input type="submit" name="actualizar" value="Actualizar">
@@ -38,8 +38,9 @@ $plazas = FuncionesBD::mostrarPlazas();
         } else {
             echo "No se enviaron precios válidos.";
         }
-    }
     $plazas = FuncionesBD::mostrarPlazas();
+
+    }
     ?>
 
 </body>
