@@ -16,6 +16,6 @@ class Product
 
     public function create(ProductModel $product): bool
     {
-        return $this->interfac-e>create($product);
+        return $this->interface->create($product);
     }
 }

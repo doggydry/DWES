@@ -51,7 +51,7 @@ class PDOProduct implements IProduct
             $stmt->bindParam(':price', $product->getPrice());
             $stmt->bindParam(':description', $product->getDescription());
             $stmt->bindParam(':image', $product->getImage());
-
+            
             if ($stmt->execute()) {
                 $result = $stmt->rowCount() === 1;
             }

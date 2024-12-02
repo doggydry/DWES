@@ -81,7 +81,7 @@ set_exception_handler([GlobalHandler::class, 'handlingException']);
                 <label>
                     <input type="file" name="image">
                 </label>
-
+                
                 <label>
                     <input type="text" name="price" placeholder="Precio">
                 </label>
