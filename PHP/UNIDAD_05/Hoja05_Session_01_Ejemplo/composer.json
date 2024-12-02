@@ -1,0 +1,26 @@
+{
+    "name": "usuario/hoja05_session_01",
+    "description": "Ejercicio para crear e instanciar a un usuario",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Funicular\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "LLANNILLO",
+            "email": "minillanillo@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S localhost:8080 -t public"
+        ]
+    }
+}

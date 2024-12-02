@@ -1,6 +1,6 @@
 <?php
 
-namespace Sesiones\clases;
+namespace Sesiones\DB;
 
 use Dotenv\Dotenv;
 use PDO;
