@@ -30,9 +30,9 @@ class PDOUsuario implements IUsuario
 
             if ($stmt->execute()) {
                 var_dump($stmt->rowCount());
-                $regisrado = true;
+                $registrado = true;
             }else {
-                $regisrado = false;
+                $registrado = false;
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -40,6 +40,16 @@ class PDOUsuario implements IUsuario
         return $registrado;
     }
 
+
+    /**
+     ** ¿Que tiene resultado?
+     ** -------------------------------------
+     ** "usuario" => "nombre_de_usuario",
+     ** "password" => "hash_de_la_contraseña"
+     ** -------------------------------------
+     ** si no hay coincidencias, resultado será false
+     ** compara si la contraseña en texto plano es igual a la contrasña cifrada
+     */
     public function loguearse(ModeloUsuario $usuario): bool
     {
         $logueo = false;
@@ -48,14 +58,14 @@ class PDOUsuario implements IUsuario
             $conexion = ConexionBD::getConexion();
             $nombre = $usuario->getNombre();
 
-            $query = "SELECT usuario, password FROM usuarios WHERE nombre='{$nombre}";
+            $query = "SELECT usuario, password FROM usuarios WHERE usuario = :usuario";
 
             $stmt = $conexion->prepare($query);
-
-            if ($stmt->rowCount() === 1) {
-                $stmt->setFetchMode(PDO::FETCH_CLASS, ModeloUsuario::class);
-                $usuario = $stmt->fetch();
-                $logueo = password_verify($usuario->getContrasenia(), $usuario->getNombre());
+            $stmt->bindParam(':usuario',$nombre,PDO::PARAM_STR);
+            $stmt->execute();
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($resultado) {
+                $logueo = password_verify($usuario->getContrasenia(), $resultado['password']);
             }
         } catch (PDOException $e) {
             echo $e->getMessage();

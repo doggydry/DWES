@@ -23,7 +23,7 @@ use Sesiones\clases\Usuario;
 
     $usuario = new ModeloUsuario();
     $usuario->setNombre($nombre_usuario);
-    $usuario->setNombre($contrasenia_usuario);
+    $usuario->setContrasenia($contrasenia_usuario);
 
     $usuarioPDO = new Usuario(new PDOUsuario());
 
@@ -36,6 +36,7 @@ use Sesiones\clases\Usuario;
         header('WWW-Authenticate: Basic Realm="Contenido restringido"');
         header('HTTP/1.0 401 Unauthorized');
         echo "Usuario no reconocido!";
+        exit;
     }
     ?>
     <h1><?php echo $nombre_usuario?></h1>

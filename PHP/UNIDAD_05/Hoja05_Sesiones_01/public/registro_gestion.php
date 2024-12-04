@@ -14,9 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contrasenia = $_POST['contrasenia_usuario'];
     $contrasenia_repetida = $_POST['contrasenia_repetida'];
 
-    // var_dump($contrasenia, $contrasenia_repetida); 
-    // exit; 
-
     if ($contrasenia !== $contrasenia_repetida) {
         header('Location: registro.php?error=2');
         exit;
@@ -33,9 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: index.php');
         exit;
     } else {
-        header('Location:registro.php?error=3');
+        header('Location: registro.php?error=3');
         exit;
     }
 } else {
     header('Location: registro.php?error=1');
+    exit;
 }
