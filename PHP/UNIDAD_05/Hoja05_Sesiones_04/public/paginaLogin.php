@@ -3,16 +3,11 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 require_once dirname(__DIR__).'/helper.php';
 
 use App\classes\Autenticarse;
-
+use App\classes\Usuario;
 
 //* Iniciar sesion si no está iniciada
 iniciar_sesion();
 
-//* Si está logueado redirigir a la página de conectado
-if (estaLogueado()){
-    header("Location: index.php?action=paginaConectado");
-    exit;
-}
 
 $error = flash('error');
 $correo = flash('correo');

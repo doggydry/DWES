@@ -70,6 +70,7 @@ class Autenticarse
             redireccionar('index.php?action=paginaConectado');
             return;
         }
+        
         //* Recogemos las variables POST de correo y contraseña
         $correo = $_POST['correo'] ?? '';
         $clave = $_POST['clave'] ?? '';
@@ -83,6 +84,7 @@ class Autenticarse
 
         //* Verificamos si el correo existe y si la contraseña coincide con la de la base de datos
         if ($usuario && password_verify($clave, $usuario['clave'])){
+             $_SESSION['usuario_id'] = $usuario['id'];
             redireccionar('index.php?action=paginaConectado');
         } else {
             //* Si hay error, crear un mensaje de error y redirigir a la página de login
@@ -95,13 +97,12 @@ class Autenticarse
     //* Método para verificar que el usuario este conectado para mostrar la página
     public static function paginaConectado (){
         if (estaLogueado()){
-            redirect('index.php?action=paginaConectado');
-            return;
-        } else {
             flash('error','No tienes acceso a esta página');        
             redireccionar('index.php?action=paginaLogin');
             return;
         }
+        // Mostrar la página conectado
+        include 'paginaConectado.php';
     }
 
     //* Metodo para eliminar la sesion
@@ -116,13 +117,11 @@ class Autenticarse
         if (estaLogueado()){
             redireccionar('index.php?action=paginaConectado');
         } else {
-            redireccionar('index.php?action=paginaLogin');
-        }
+            include 'paginaLogin.php';        }
     }
 
     //* Método para controlar la variable $_GET['accion] para saber que metodo ejecutar
     public static function runAccion (){
-        var_dump($_GET); // Depuración
         //* Comprobamos si la variable get accion está definida 
         if(isset($_GET['action'])){
 
@@ -150,7 +149,7 @@ class Autenticarse
             }
         } else {
              //* Si no existe la variable en la acción URL, redirigimos al login
-             echo 'asd';
+             redireccionar('index.php?action=paginaLogin');
         }
     }
 

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 function flash(string $clave, string $mensaje = null): string|null
 {
     // Si se pasa un mensaje, guardarlo con la clave en la sesion flash

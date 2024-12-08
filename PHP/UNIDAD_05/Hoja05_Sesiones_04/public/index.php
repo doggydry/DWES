@@ -12,4 +12,6 @@ Autenticarse::configurar();
 
 //*Ejecutar la accion segun el parametro de accion en la URL
 Autenticarse::runAccion();
+
 ?>
+

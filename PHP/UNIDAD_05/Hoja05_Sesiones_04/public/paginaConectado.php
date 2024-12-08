@@ -1,7 +1,6 @@
 <?php
-require_once dirname(__DIR__) . 'vendor/autoload.php';
-require_once dirname(__DIR__) . 'helper.php';
-
+require_once dirname(__DIR__).'/vendor/autoload.php';
+require_once dirname(__DIR__).'/helper.php';
 
 iniciar_sesion();
 
@@ -9,14 +8,19 @@ iniciar_sesion();
  ** Comprobar si el usuario esta logueado, si no lo está mostrar el error
  ** y redirigir a la página de login
  */
-if (!estaLogueado()) {
-    flash('error', 'No tienes acceso a esta pagina');
-    redireccionar('index.php?action=paginaLogin');
-    exit;
-}
+// if (!estaLogueado()) {
+//     flash('error', 'No tienes acceso a esta pagina');
+//     redireccionar('index.php?action=paginaLogin');
+//     exit;
+// } 
 
 //* Si está logueado, obtener la info del usuario
-$usuario_ID = $_SESSION['usuario_id'];
+$usuario_id = $_SESSION['usuario_id'];
+var_dump($usuario_id);
+
+
+
+
 ?>
 
 <!DOCTYPE html>
