@@ -1,30 +1,18 @@
-<?php 
+<?php
 namespace Ejercicio03\clases;
 
+use Ejercicio03\Interfaces\IUsuario;
+use Ejercicio03\Models\ModeloUsuario;
+
 class Usuario{
-    private int $id_usuario;
-    private string $nombre;
-    private string $contrasenia;
 
-    public function __construct(){}
+    public function __construct(private IUsuario $interface){}
 
-    public function getId_usuario():int{
-        return $this->id_usuario;
+    public function registrar(ModeloUsuario $usuario):bool{
+        return $this->interface->registrar($usuario);
     }
-    public function getNombre():string{
-        return $this->nombre;
+    public function loguearse(ModeloUsuario $usuario):bool{
+        return $this->interface->loguearse($usuario);
     }
-    public function getContrasenia():string{
-        return $this->contrasenia;
-    }
-    public function setId_usuario(int $id_usuario):int{
-        return $this->id_usuario = $id_usuario;
-    }
-    public function setNombre(string $nombre):string{
-        return $this->nombre = $nombre;
-    }
-    public function setContrasenia(string $contrasenia):string{
-        return $this->contrasenia = $contrasenia;
-    }
-    
+
 }
