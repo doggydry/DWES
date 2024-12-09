@@ -1,4 +1,6 @@
 <?php
+namespace App\Ficheros;
+
 session_start();
 function flash(string $clave, string $mensaje = null): string|null
 {

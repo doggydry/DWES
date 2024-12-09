@@ -1,6 +1,11 @@
 <?php
 require_once dirname(__DIR__).'/vendor/autoload.php';
-require_once dirname(__DIR__).'/helper.php';
+require_once dirname(__DIR__).'/src/Ficheros/helper.php';
+
+use function App\Ficheros\flash;
+use function App\Ficheros\iniciar_sesion;
+use function App\Ficheros\redireccionar;
+
 
 iniciar_sesion();
 
@@ -8,18 +13,14 @@ iniciar_sesion();
  ** Comprobar si el usuario esta logueado, si no lo está mostrar el error
  ** y redirigir a la página de login
  */
-// if (!estaLogueado()) {
-//     flash('error', 'No tienes acceso a esta pagina');
-//     redireccionar('index.php?action=paginaLogin');
-//     exit;
-// } 
+ if (!isset($_SESSION['usuario'])) {
+    flash('error', 'No tienes acceso a esta página');
+    redireccionar('index.php?action=paginaLogin');
+    exit;
+}
 
-//* Si está logueado, obtener la info del usuario
-$usuario_id = $_SESSION['usuario_id'];
-var_dump($usuario_id);
-
-
-
+//* Si está logueado, recuperar el objeto Usuario desde la sesion
+$usuario = $_SESSION['usuario'];
 
 ?>
 
@@ -35,7 +36,7 @@ var_dump($usuario_id);
 <body class="container">
     <div>
         <h1>Te has conectado</h1>
-        <p>Tu id de usuario es <?php echo htmlspecialchars($usuario_id);?></p>
+        <p>Tu id de usuario es <?php echo $usuario->getId();?></p>
         <form action="index.php?action=desconectarse" method="POST">
             <button type="submit">Cerrar Sesión</button>
         </form>

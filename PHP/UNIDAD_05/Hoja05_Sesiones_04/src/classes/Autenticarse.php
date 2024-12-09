@@ -1,6 +1,12 @@
 <?php
 namespace App\classes;
-require_once dirname(__DIR__, 2).'/helper.php';
+require_once dirname(__DIR__).'/Ficheros/helper.php';
+use App\Ficheros;
+use function App\Ficheros\flash;
+use function App\Ficheros\iniciar_sesion;
+use function App\Ficheros\redireccionar;
+use function App\Ficheros\esPost;
+use function App\Ficheros\estaLogueado;
 
 
 use App\DB\ConexionBD;
@@ -59,7 +65,7 @@ class Autenticarse
         //* Verifica si el método es POST
         if (!esPost()) {
             //* Si no lo es se crea mensaje de error y se redirige a paginaLogin
-        flash('error', 'Metodo HTTP no permitido');
+            flash('error', 'Metodo HTTP no permitido');
             redireccionar('index.php?action=paginaLogin');
             return;
         }
@@ -77,14 +83,21 @@ class Autenticarse
 
         //* Buscamos el usuario en la base de datos
         $conexion = ConexionBD::getConexion();
-        $query = 'SELECT correo, clave FROM usuarios WHERE correo = :correo';
+        $query = 'SELECT id, correo, clave FROM usuarios WHERE correo = :correo';
         $stmt = $conexion->prepare($query);
         $stmt->execute(['correo'=>$correo]);
-        $usuario = $stmt->fetch();
+        $datosUsuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
         //* Verificamos si el correo existe y si la contraseña coincide con la de la base de datos
-        if ($usuario && password_verify($clave, $usuario['clave'])){
-             $_SESSION['usuario_id'] = $usuario['id'];
+        if ($datosUsuario && password_verify($clave, $datosUsuario['clave'])){
+            
+            //* Creamos la instancia de usuario
+            $usuario = new Usuario((int)$datosUsuario['id'],$datosUsuario['correo'],$datosUsuario['clave']);
+
+            //* Permite que los datos del usuario estén disponibles en otras páginas del sitio mientras dure la sesión
+            $_SESSION['usuario'] = $usuario;
+
+
             redireccionar('index.php?action=paginaConectado');
         } else {
             //* Si hay error, crear un mensaje de error y redirigir a la página de login
@@ -117,7 +130,8 @@ class Autenticarse
         if (estaLogueado()){
             redireccionar('index.php?action=paginaConectado');
         } else {
-            include 'paginaLogin.php';        }
+            include 'paginaLogin.php';        
+        }
     }
 
     //* Método para controlar la variable $_GET['accion] para saber que metodo ejecutar

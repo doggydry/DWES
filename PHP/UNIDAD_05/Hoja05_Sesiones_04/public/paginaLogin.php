@@ -1,9 +1,9 @@
 <?php
 require_once dirname(__DIR__).'/vendor/autoload.php';
-require_once dirname(__DIR__).'/helper.php';
+require_once dirname(__DIR__).'/src/Ficheros/helper.php';
+use function App\Ficheros\flash;
+use function App\Ficheros\iniciar_sesion;
 
-use App\classes\Autenticarse;
-use App\classes\Usuario;
 
 //* Iniciar sesion si no está iniciada
 iniciar_sesion();
