@@ -33,7 +33,7 @@ function iniciar_sesion()
 //? Verifica si existe la clave usuario en la sesion
 function estaLogueado(): bool
 {
-    return isset($_SESSION['usuario_id']);
+    return isset($_SESSION['usuario']);
 }
 
 //? Redirecciona a la pagina que se pase por parametro

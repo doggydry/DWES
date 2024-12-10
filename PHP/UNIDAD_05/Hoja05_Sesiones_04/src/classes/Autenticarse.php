@@ -109,7 +109,7 @@ class Autenticarse
 
     //* Método para verificar que el usuario este conectado para mostrar la página
     public static function paginaConectado (){
-        if (estaLogueado()){
+        if (!estaLogueado()){
             flash('error','No tienes acceso a esta página');        
             redireccionar('index.php?action=paginaLogin');
             return;
@@ -125,11 +125,12 @@ class Autenticarse
         redireccionar('index.php?action=paginaLogin');
     }
 
-    //* Metodo para verificar que el usuario no esté conectado para mostrar el login
+    //* Metodo para verificar que el usuario esté conectado para no mostrar el login otra vez
     public static function paginaLogin(){
         if (estaLogueado()){
             redireccionar('index.php?action=paginaConectado');
         } else {
+            // flash('error','Por favor, inicia sesión');
             include 'paginaLogin.php';        
         }
     }

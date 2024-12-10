@@ -5,13 +5,10 @@ class Usuario
 {
     private int $id;
     private string $correo;
-    private string $clave;
-
     public function __construct(int $id, string $correo, string $clave)
     {
         $this->id = $id;
         $this->correo = $correo;
-        $this->clave = $clave;
     }
     public function getId(): int
     {
@@ -21,11 +18,6 @@ class Usuario
     public function getCorreo(): string
     {
         return $this->correo;
-    }
-
-    public function getClave(): string
-    {
-        return $this->clave;
     }
 
     public function setId(int $id): void
@@ -38,9 +30,5 @@ class Usuario
         $this->correo = $correo;
     }
 
-    public function setClave(string $clave): void
-    {
-        $this->clave = $clave;
-    }
+   
 }
-?>
