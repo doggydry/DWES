@@ -15,7 +15,6 @@ if (estaLogueado()) {
 //* Iniciar sesion si no está iniciada
 iniciar_sesion();
 
-
 $error = flash('error');
 $correo = flash('correo');
 ?>
@@ -36,7 +35,7 @@ $correo = flash('correo');
         <h1>Inicio de sesión</h1>
         <form class=" login-form" action="index.php?action=autenticar" method="POST">
             <label for="correo">Correo Electronico:</label>
-            <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>" reqiored>
+            <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>" required>
 
             <label for="clave">Contraseña:</label>
             <input type="password" id="clave" name="clave" required>
@@ -45,7 +44,7 @@ $correo = flash('correo');
 
             <!-- Mostrar el mensaje de error si existe -->
             <?php if ($error): ?>
-                <div style="color: red;"">
+                <div style="color: red;">
             <p><?php echo $error; ?></p>
         </div>
     <?php endif; ?>

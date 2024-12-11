@@ -108,6 +108,16 @@ class Autenticarse
     }
 
     //* Método para verificar que el usuario este conectado para mostrar la página
+
+    /**
+     * ¿Por que include en vez de redireccionar()?
+     * -----------------------------------------
+     * Evitar doble redirección:
+     * Si usamos redireccionar() de nuevo dentro 
+     * de un else, crea una confusión y provoca un error de redirecciones,
+     * ya que el flujo de la página redirigire dos veces en una sola ejecución. 
+     * ----------------------------------------
+     */
     public static function paginaConectado (){
         if (!estaLogueado()){
             flash('error','No tienes acceso a esta página');        

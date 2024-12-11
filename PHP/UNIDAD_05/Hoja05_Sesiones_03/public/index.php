@@ -7,7 +7,6 @@ use Ejercicio03\clases\PDOUsuario;
 use Ejercicio03\clases\Usuario;
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,6 +48,7 @@ use Ejercicio03\clases\Usuario;
         echo "Usuario no reconocido!";
         exit;
     }
+
     ?>
     <h1>Gestionar Sesiones</h1>
     <h3><?php echo 'Nombre de usuario: ' . $nombre_usuario ?></h3>
@@ -66,14 +66,18 @@ use Ejercicio03\clases\Usuario;
             <li style="border: 1px solid #ddd; padding: 10px; margin-bottom: 5px; border-radius: 5px;"><?php echo $instante; ?></li>
         <?php endforeach; ?>
     </ul>
-    <form action="index.php" method="post">
+    
+    <a href="Fuentes/borrar.php">Borrar</a>
+
+    <!-- <form action="index.php" method="post">
         <input type="submit" id="borrarBtn" value="Borrar">
-    </form>
-    <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    </form> -->
+    <!-- 
+     php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         unset($_SESSION['visitas']);
         header ("Location: index.php");
         exit;
-    } ?>
+    } ?> -->
 
 </body>
 

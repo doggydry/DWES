@@ -63,9 +63,9 @@ class PDOUsuario implements IUsuario
             $stmt = $conexion->prepare($query);
             $stmt->bindParam(':usuario',$nombre,PDO::PARAM_STR);
             $stmt->execute();
-            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            $resultado = $stmt->fetch(PDO::FETCH_OBJ);
             if ($resultado) {
-                $logueo = password_verify($usuario->getContrasenia(), $resultado['password']);
+                $logueo = password_verify($usuario->getContrasenia(), $resultado->password);
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
