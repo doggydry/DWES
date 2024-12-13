@@ -1,7 +1,8 @@
 <?php
 namespace App\Ficheros;
 
-session_start();function flash(string $clave, string $mensaje = null): string|null
+session_start();
+function flash(string $clave, string $mensaje = null): string|null
 {
     // Si se pasa un mensaje, lo guardamos en la sesión bajo la clave especificada
     if ($mensaje !== null) {
