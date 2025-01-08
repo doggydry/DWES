@@ -3,7 +3,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use App\classes\Autenticarse;
 
-//* Iniciar la sesion 
+//* Iniciar la sesion
 Autenticarse::inicializar();
 
 //* Configurar la base de datos

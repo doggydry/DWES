@@ -16,8 +16,12 @@ if (estaLogueado()) {
 }
 
 $error = flash('error');
+<<<<<<< HEAD
 $correo = flash('correo');
 
+=======
+$correo = flash('correo') ?? '';
+>>>>>>> 296c6c912db3d2cf08f4abfac1e03f8c195d467e
 ?>
 
 <!DOCTYPE html>
@@ -36,8 +40,9 @@ $correo = flash('correo');
         <h1>Inicio de sesión</h1>
         <form class=" login-form" action="index.php?action=autenticar" method="POST">
             <label for="correo">Correo Electronico:</label>
-            <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>" required>
 
+            <!-- Se puede poner también < ?= $correo ?> -->
+            <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>" required> 
             <label for="clave">Contraseña:</label>
             <input type="password" id="clave" name="clave" required>
 

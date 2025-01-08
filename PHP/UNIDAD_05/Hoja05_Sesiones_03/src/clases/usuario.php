@@ -4,7 +4,7 @@ namespace Ejercicio03\clases;
 use Ejercicio03\Interfaces\IUsuario;
 use Ejercicio03\Models\ModeloUsuario;
 
-class Usuario{
+class Usuario implements IUsuario{
 
     public function __construct(private IUsuario $interface){}
 

@@ -96,8 +96,6 @@ class Autenticarse
 
             //* Permite que los datos del usuario estén disponibles en otras páginas del sitio mientras dure la sesión
             $_SESSION['usuario'] = $usuario;
-
-
             redireccionar('index.php?action=paginaConectado');
         } else {
             //* Si hay error, crear un mensaje de error y redirigir a la página de login
@@ -110,10 +108,10 @@ class Autenticarse
     //* Método para verificar que el usuario este conectado para mostrar la página
 
     /**
-     * ¿Por que include en vez de redireccionar()?
+     * ¿Por que redireccionar(paginaLogin.php)?
      * -----------------------------------------
      * Evitar doble redirección:
-     * Si usamos redireccionar() de nuevo dentro 
+     * Si usamos redireccionar(index.php?action=paginaLogin) de nuevo dentro 
      * de un else, crea una confusión y provoca un error de redirecciones,
      * ya que el flujo de la página redirigire dos veces en una sola ejecución. 
      * ----------------------------------------
@@ -125,7 +123,7 @@ class Autenticarse
             return;
         }
         // Mostrar la página conectado
-        include 'paginaConectado.php';
+        redireccionar('paginaConectado.php');
     }
 
     //* Metodo para eliminar la sesion
@@ -141,7 +139,7 @@ class Autenticarse
             redireccionar('index.php?action=paginaConectado');
         } else {
             // flash('error','Por favor, inicia sesión');
-            include 'paginaLogin.php';        
+            redireccionar('paginaLogin.php');        
         }
     }
 
