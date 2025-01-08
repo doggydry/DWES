@@ -151,10 +151,10 @@ class Autenticarse
         if(isset($_GET['action'])){
 
             //* Obtenemos el valor de la acción
-            $accion = $_GET['action'];
+            $action = $_GET['action'];
 
             //* Llamamos al método adecuado según el valor de la acción
-            switch($accion){
+            switch($action){
                 case 'paginaLogin':
                     Autenticarse::paginaLogin();
                     break;

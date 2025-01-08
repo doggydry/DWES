@@ -6,17 +6,18 @@ use function App\Ficheros\estaLogueado;
 use function App\Ficheros\flash;
 use function App\Ficheros\iniciar_sesion;
 use function App\Ficheros\redireccionar;
+//* Iniciar sesion si no está iniciada
+iniciar_sesion();
+
 
 //* Comprobamos si esta logeuado
 if (estaLogueado()) {
     redireccionar('index.php?action=paginaConectado');
 }
 
-//* Iniciar sesion si no está iniciada
-iniciar_sesion();
-
 $error = flash('error');
 $correo = flash('correo');
+
 ?>
 
 <!DOCTYPE html>

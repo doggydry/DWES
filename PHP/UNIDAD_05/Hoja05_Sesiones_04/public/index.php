@@ -2,7 +2,6 @@
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use App\classes\Autenticarse;
-use App\DB\ConexionBD;
 
 //* Iniciar la sesion 
 Autenticarse::inicializar();
@@ -13,5 +12,4 @@ Autenticarse::configurar();
 //*Ejecutar la accion segun el parametro de accion en la URL
 Autenticarse::runAccion();
 
-?>
 

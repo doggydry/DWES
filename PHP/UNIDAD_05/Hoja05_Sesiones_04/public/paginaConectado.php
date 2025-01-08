@@ -14,7 +14,7 @@ iniciar_sesion();
  ** y redirigir a la página de login
  */
  if (!isset($_SESSION['usuario'])) {
-    flash('error', 'No tienes acceso a esta página');
+    flash('error', 'Por favor, inicia sesión');
     redireccionar('index.php?action=paginaLogin');
     exit;
 }
