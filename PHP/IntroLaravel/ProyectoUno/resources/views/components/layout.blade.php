@@ -31,7 +31,7 @@
                 {{-- Se ponen los dos puntos delante del prop para que no lo detecte como cadena si no como booleano --}}
 
                 <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-                <x-nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
+                <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
                 <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
               </div>
             </div>

@@ -16,12 +16,7 @@ if (estaLogueado()) {
 }
 
 $error = flash('error');
-<<<<<<< HEAD
-$correo = flash('correo');
-
-=======
 $correo = flash('correo') ?? '';
->>>>>>> 296c6c912db3d2cf08f4abfac1e03f8c195d467e
 ?>
 
 <!DOCTYPE html>
