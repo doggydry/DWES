@@ -7,7 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inicio</title>
 </head>
-<body>
-<h1 class="text-red-600 hover:text-blue-900 rounded">Pagina de inicio</h1>
+<body class="bg-gray-100">
+
+    <header class="bg-blue-500 text-white p-4">
+        <h1 class="text-xl font-bold">Página de Inicio</h1>
+    </header>
+
+    <main class="p-6">
+
+    </main>
+
 </body>
 </html>

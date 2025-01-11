@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
-use App\Models\Job;
- /**
-  * Vamos a meter el array de jobs en una clase para
-  */
+use App\Models\JobListing;
+use App\Models\Departments;
+
+/**
+ * Vamos a meter el array de jobs en una clase para
+ */
 
 
 
@@ -23,7 +25,7 @@ Route::get('/contact', function () {
  */
 Route::get('/jobs', function () {
     return view('jobs', [
-        'jobs' => Job::all()
+        'jobs' => JobListing::all()
     ]);
 });
 
@@ -44,6 +46,26 @@ Route::get('/jobs/{id}', function ($id) {
     pero esta si que tiene acceso a las variables del exterior por lo que no nos da el problema del use
     Puede ser más liosa en un principio pero recomendable siempre que se pueda. (IR A LA CLASE JOB.PHP)
     */
-    $job = Job::find($id);
-    return view ('job',['job'=>$job]);
+    $job = JobListing::find($id);
+    return view('job', ['job' => $job]);
+});
+
+/*
+Usamos el modelo eloquent para acceder al metodo all que nos saca la informacion
+*/
+Route::get('/departments', function () {
+    return view('departments', [
+        'departments' => Departments::all()
+    ]);
+});
+
+/*
+La ruta captura el ID de la URL.
+Con el metodo find(), busca el departamento correspondiente en nuestra base de datos.
+Pasa el resultado a la vista 'department'.
+*/
+Route::get('/department/{id}', function ($id) {
+    $department = Departments::find($id);
+    //En la vista department va a haber disponible una variable llamada $department
+    return view('department', ['department' => $department]);
 });
