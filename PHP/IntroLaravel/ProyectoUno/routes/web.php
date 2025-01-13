@@ -69,3 +69,8 @@ Route::get('/department/{id}', function ($id) {
     //En la vista department va a haber disponible una variable llamada $department
     return view('department', ['department' => $department]);
 });
+
+
+
+
+

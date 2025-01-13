@@ -11,13 +11,7 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        return '<h1>Listado de animales:</h1>
-        <ul>
-            <li>Monos</li>
-            <li>Higuanas</li>
-            <li>Zebras</li>
-            </li>
-        </ul>';
+        return view('animales.index');
     }
 
     /**
@@ -25,7 +19,7 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        return '<h1>Pagina para crear un animal</h1>';
+        return view('animales.create');
     }
 
     /**
@@ -41,7 +35,7 @@ class AnimalController extends Controller
      */
     public function show(string $animal)
     {
-        return '<h1>Informacion en detalle de ' . $animal . '</h1>';
+        return view('animales.show');
     }
 
     /**
@@ -49,7 +43,7 @@ class AnimalController extends Controller
      */
     public function edit(string $animalModificar)
     {
-        return '<h1>Pagina para modificar a ' . $animalModificar . '</h1>';
+        return view('animales.edit');
     }
 
     /**

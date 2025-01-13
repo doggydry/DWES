@@ -3,27 +3,17 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return 'Esta es la pagina principal';
+    return view('inicio');
 });
-Route::get('/animales', function () {
-    return 'Listado de animales:
-    ·Monos,
-    ·Higuanas,
-    ·Zebras,
-    ·Leones,
-    ·Hienas,
-    ·oros';
+Route::get('/animals', function () {
+    return view('index');
 });
-Route::get('/animales{animal}', function ($animal) {
-    $txt = 'Informacion sobre'.$animal;
-    return $txt;
-
+Route::get('/animals/{animal}', function ($animal) {
+    return view('show');
 });
-Route::get('/animales/crear', function () {
-    return 'Pagina para añadir un animal';
+Route::get('/animals/crear', function () {
+    return view('crear');
 });
-Route::get('/animales/{animal}/editar', function () {
-    return 'Pagina para modificar un animal';
+Route::get('/animals/{animal}/editar', function () {
+    return view('edit');
 });
-
-
