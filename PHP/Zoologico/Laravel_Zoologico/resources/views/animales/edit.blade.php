@@ -1,23 +1,23 @@
 @extends('layouts.plantilla')
 @section('titulo','Zoologico')
 @section('contenido')
-<h1 class="text-4xl font-extrabold text-green-600 tracking-wide mb-6">Pagina para editar a un {{$animal['especie']}} </h1>
-<h1 class="text-2xl font-extrabold text-blue-600 tracking-wide mb-6">Información sobre el {{ $animal['especie'] }}</h1>
+<h1 class="text-4xl font-extrabold text-green-600 tracking-wide mb-6">Pagina para editar a un {{$animal->especie}} </h1>
+<h1 class="text-2xl font-extrabold text-blue-600 tracking-wide mb-6">Información sobre el {{ $animal->especie }}</h1>
 
 <div class="flex flex-col items-center md:flex-row md:items-start space-y-6 md:space-y-0 md:space-x-8">
     <div class="w-full md:w-1/2">
         {{-- Información del animal --}}
         <ul class="text-left space-y-2">
-            <li class="text-xl"><strong>Peso:</strong> {{ $animal['peso'] }}kg</li>
-            <li class="text-xl"><strong>Altura:</strong> {{ $animal['altura'] }}cm</li>
-            <li class="text-xl"><strong>Fecha de Nacimiento:</strong> {{ $animal['fechaNacimiento'] }}</li>
-            <li class="text-xl"><strong>Alimentación:</strong> {{ $animal['alimentacion'] }}</li>
-            <li class="text-xl"><strong>Descripción:</strong> {{ $animal['descripcion'] }}</li>
+            <li class="text-xl"><strong>Peso:</strong> {{ $animal->peso }}kg</li>
+            <li class="text-xl"><strong>Altura:</strong> {{ $animal->altura }}cm</li>
+            <li class="text-xl"><strong>Fecha de Nacimiento:</strong> {{ $animal->fechaNacimiento }}</li>
+            <li class="text-xl"><strong>Alimentación:</strong> {{ $animal->alimentacion }}</li>
+            <li class="text-xl"><strong>Descripción:</strong> {{ $animal->descripcion }}</li>
         </ul>
     </div>
     <div class="w-full md:w-1/2">
         {{-- Imagen del animal --}}
-        <img src="{{ asset('assets/images/'.$animal['especie'].'.jpg') }}" alt="{{ $animal['especie'] }}" class="h-48 w-48 object-cover rounded-lg shadow-lg">
+        <img src="{{ asset('assets/images/'.$animal->especie.'.jpg') }}" alt="{{ $animal->especie }}" class="h-48 w-48 object-cover rounded-lg shadow-lg">
     </div>
 </div>
 
@@ -25,7 +25,7 @@
 <form action="{{ route('animales.create') }}" method="POST" enctype="multipart/form-data" class="mt-8 p-8 bg-gray-100 shadow-lg rounded-lg max-w-3xl mx-auto">
     @csrf
 
-    <h2 class="text-3xl font-semibold text-center text-green-700 mb-6">Editar {{ $animal['especie'] }}</h2>
+    <h2 class="text-3xl font-semibold text-center text-green-700 mb-6">Editar {{ $animal->especie }}</h2>
 
     <div class="mb-4">
         <label for="especie" class="block text-lg font-semibold text-gray-700">Especie</label>

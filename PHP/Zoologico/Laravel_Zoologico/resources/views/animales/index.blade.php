@@ -2,16 +2,17 @@
 @section('titulo', 'Zoologico')
 @section('contenido')
     <h1 class="text-4xl font-extrabold text-green-600 tracking-wide mb-6">Listado de animales</h1>
-    {{-- Necesitamos acceder al indice de cada animal en el array, asique con
+
+    {{-- PASADO --Necesitamos acceder al indice de cada animal en el array, asique con
     el $index almacenamos a la posicion y lo usamos en la ruta para
     identificar cada animal de forma única --}}
 
-    @foreach ($animales as $index => $animal)
+    @foreach ($animales as $animal)
         <ul>
             <li>
-                <a href="{{ route('animales.show', $index) }}"
+                <a href="{{ route('animales.show', $animal) }}"
                     class="text-2xl hover:underline hover:text-blue-500"><strong>Especie:
-                    </strong>{{ $animal['especie'] }}</a>
+                    </strong>{{ $animal->especie }}</a>
             </li>
             <br>
         </ul>
