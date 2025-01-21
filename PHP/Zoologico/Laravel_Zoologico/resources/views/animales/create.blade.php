@@ -6,7 +6,7 @@
 {{--Formulario para crear un nuevo animal con todos sus campos
 @csrf para evitar ataques Cross-Site Request Forgery
 --}}
-<form action="{{ route('animales.create') }}" method="POST" enctype="multipart/form-data" class="mt-8 p-8 bg-gray-100 shadow-lg rounded-lg max-w-3xl mx-auto">
+<form action="{{ route('animales.source') }}" method="POST" enctype="multipart/form-data" class="mt-8 p-8 bg-gray-100 shadow-lg rounded-lg max-w-3xl mx-auto">
     @csrf
 
     <h2 class="text-3xl font-semibold text-center text-green-700 mb-6">Crear un nuevo animal</h2>

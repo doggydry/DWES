@@ -10,6 +10,7 @@
             <li class="text-xl"><strong>Peso:</strong> {{ $animal->peso }}kg</li>
             <li class="text-xl"><strong>Altura:</strong> {{ $animal->altura }}cm</li>
             <li class="text-xl"><strong>Fecha de Nacimiento:</strong> {{ $animal->fechaNacimiento }}</li>
+            <li class="text-xl"><strong>Edad: </strong> {{ round($animal->getEdad())}} años</li>
             <li class="text-xl"><strong>Alimentación:</strong> {{ $animal->alimentacion }}</li>
             <li class="text-xl"><strong>Descripción:</strong> {{ $animal->descripcion }}</li>
         </ul>
