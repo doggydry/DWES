@@ -1,7 +1,9 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CrearAnimalRequest;
 use Illuminate\Http\Request;
 use App\Models\Animal;
 class AnimalController extends Controller
@@ -18,16 +20,16 @@ class AnimalController extends Controller
         return view('animales.index', ['animales' => $animales]);
     }
 
+
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Animal $animal)
     {
-        // Busca el animal y si no lo encuenrta devuelve 404
-        $animal = Animal::findOrFail($id);
-
         //Pasamos la variable a la vista
-        return view ('animales.show',['animal'=>$animal]);
+        return view ('animales.show',compact('animal'));
+
+
 
 
         /*
@@ -44,12 +46,12 @@ class AnimalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Animal $animal)
     {
-        // Busca el animal y si no lo encuenrta devuelve 404
-        $animal = Animal::findOrFail($id);
-        // Pasamos la variable a al vista
-        return view ('animales.edit',['animal'=>$animal]);
+       //Pasamos la variable a la vista
+       return view ('animales.edit',compact('animal'));
+
+
 
 
         /*
@@ -63,6 +65,7 @@ class AnimalController extends Controller
         */
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -74,20 +77,25 @@ class AnimalController extends Controller
 
 
 
+
+
     /**
-     * Store a newly created resource in storage.
+     * Le pasamos a la funcion la clase Request como parametro.
      */
-    public function store(Request $request)
+    public function store(CrearAnimalRequest $request)
     {
-        //
+         $a = new Animal();
     }
+
+
     /**
-     * Update the specified resource in storage.
+     * Le pasamos a la funcion la clase Request como parámetro a través de la inyección de dependencias.
      */
-    public function update(Request $request, string $id)
+    public function update(CrearAnimalRequest $request, string $id)
     {
-        //
+
     }
+
 
     /**
      * Remove the specified resource from storage.

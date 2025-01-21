@@ -1,17 +1,20 @@
 <?php
 
+
 namespace Database\Seeders;
+
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Animal;
+
 
 //Clase estática que contiene muchos metodos para manipular y trabajar con cadenas
 use Illuminate\Support\Str;
 class AnimalSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * variable con los datos de los animales
      */
     private $animales = array(
         array(
@@ -22,7 +25,7 @@ class AnimalSeeder extends Seeder
             'imagen' => 'bisonte.jpg',
             'alimentacion' => 'herbívoro',
             'descripcion' => 'Los bisontes son potentes ungulados de carácter muy vivaz y de una asombrosa agilidad. Forman rebaños independientes de machos y hembras que se unen únicamente en la época de celo, en la que los machos están más gordos y vigorosos. Finalizado este periodo, las hembras se alejan de la manada y vuelven a su vida tranquila. Nueve meses después dan a luz un ternero, que permanecerá junto a su madre.
-			El carácter del bisonte se modifica con el paso de los años: de joven es alegre y vivaz y, aunque no es especialmente manso, tampoco se muestran agresivos. Al hacerse viejos, sobre todo los machos, se vuelven rudos y se irritan fácilmente, llegando a ser peligrosos.'
+            El carácter del bisonte se modifica con el paso de los años: de joven es alegre y vivaz y, aunque no es especialmente manso, tampoco se muestran agresivos. Al hacerse viejos, sobre todo los machos, se vuelven rudos y se irritan fácilmente, llegando a ser peligrosos.'
         ),
         array(
             'especie' => 'Elefante',
@@ -72,6 +75,7 @@ Los machos viejos, muchas veces heridos por la lucha, sobreviven durante poco ti
 La alimentación del león se basa en la captura de gacelas, cebras, ñús y otros antílopes, aunque no desprecian nunca la oportunidad de robar las capturas a otros cazadores menos robustos (hienas, guepardos, leopardos, etc.) o incluso alimentarse de carroña, ya que poseen un bajo porcentaje de éxito en la caza, capturando una presa de cinco intentos.'
         ),
 
+
         array(
             'especie' => 'Mono de Gibraltar',
             'peso' => 7,
@@ -85,6 +89,7 @@ Habitan en bosques de encinas, cedros del Atlas y abetos. También pueblan bioti
 Son diurnos y viven preferentemente en el suelo. Forman grupos numerosos que se hallan socialmente bien organizados, liderados por un fuerte macho. Poseen por tanto sus propias jerarquías, hábitos y costumbres.'
         ),
 
+
         array(
             'especie' => 'Tigre',
             'peso' => 145,
@@ -96,8 +101,10 @@ Son diurnos y viven preferentemente en el suelo. Forman grupos numerosos que se 
         )
     );
 
+
     /**
      * Se asigna el valor de cada clave en el array al atributo de la base de datos
+     * php artisan db:seed para correr el metodo run e inicializar la tabla con estos datos
      */
     public function run(): void
     {
