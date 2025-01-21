@@ -7,6 +7,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 
+
 class CrearAnimalRequest extends FormRequest
 {
     /**
@@ -16,7 +17,6 @@ class CrearAnimalRequest extends FormRequest
     {
         return false;
     }
-
 
     /**
      * Get the validation rules that apply to the request.
@@ -30,6 +30,7 @@ class CrearAnimalRequest extends FormRequest
             'peso'=>'required',
             'altura'=>'required',
             'fechaNacimiento'=>'required|min:3',
+
             'imagen'=>'required|mimes:jpeg,png,jpg,svg'
         ];
     }
@@ -42,6 +43,7 @@ class CrearAnimalRequest extends FormRequest
             'altura'=>'El altura no puede ser vacio',
             'fechaNacimiento'=>'La fecha de nacimiento no puede estar vacia',
             'imagen'=>'Formatos validos: jpeg,png,jpg y svg. No puede estar vacío',
+
 
 
         ];

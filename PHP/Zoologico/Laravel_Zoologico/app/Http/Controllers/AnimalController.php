@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CrearAnimalRequest;
 use Illuminate\Http\Request;
 use App\Models\Animal;
+
 class AnimalController extends Controller
 {
     /**
@@ -26,13 +27,14 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
+
         //Pasamos la variable a la vista
-        return view ('animales.show',compact('animal'));
+        return view('animales.show', compact('animal'));
+    }
 
 
 
-
-        /*
+    /*
         //Verificamos si el indice del animal existe, si no existe devolvemos un 404
         if (!isset($this->animales[$animal])) {
             abort(404, 'Animal no encontrado');
@@ -42,19 +44,20 @@ class AnimalController extends Controller
         $animal = $this->animales[$animal];
         return view('animales.show', ['animal' => $animal]);
         */
-    }
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Animal $animal)
     {
-       //Pasamos la variable a la vista
-       return view ('animales.edit',compact('animal'));
+
+        //Pasamos la variable a la vista
+        return view('animales.edit', compact('animal'));
+    }
 
 
 
-
-        /*
+    /*
         //Verificamos si el indice del animal existe, si no existe devolvemos un 404
         if (!isset($this->animales[$animal])) {
             abort(404, 'Animal no encontrado');
@@ -63,7 +66,7 @@ class AnimalController extends Controller
         $animal = $this->animales[$animal];
         return view('animales.edit', ['animal' => $animal]);
         */
-    }
+
 
 
     /**
@@ -75,26 +78,19 @@ class AnimalController extends Controller
     }
 
 
-
-
-
-
     /**
      * Le pasamos a la funcion la clase Request como parametro.
      */
     public function store(CrearAnimalRequest $request)
     {
-         $a = new Animal();
+        $a = new Animal();
     }
 
 
     /**
      * Le pasamos a la funcion la clase Request como parámetro a través de la inyección de dependencias.
      */
-    public function update(CrearAnimalRequest $request, string $id)
-    {
-
-    }
+    public function update(CrearAnimalRequest $request, string $id) {}
 
 
     /**
