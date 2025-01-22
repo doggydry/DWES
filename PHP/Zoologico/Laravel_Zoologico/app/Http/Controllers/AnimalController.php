@@ -85,24 +85,35 @@ class AnimalController extends Controller
      */
     public function store(CrearAnimalRequest $request)
     {
+        $request->validated();
         // Creamos la instancia del nuevo animal
         $animal = new Animal();
+        $animal->fill($request->all());
 
         // Asignamos los campos validados a cada atributo
         $animal->especie = $request->input('especie');
         $animal->peso = $request->input('peso');
         $animal->altura = $request->input('altura');
         $animal->fechaNacimiento = $request->input('fechaNacimiento');
-        $animal->imagen = $request->file('imagen')->store('imagenes');
+        $animal->descripcion = $request->input('descripcion');
 
-        // Creamos el slug a partir de la espeice
-        $animal->slug = Str::slug($animal->especie,'-');
+        //Ruta donde se guardaran las imagenes
+        if($request->hasFile('imagen')){
+            $destinationPath = public_path('assets/imagenes');
+            //Generar el nombre del arhchivo basado en al especie
+            $filename = Str::slug($request->input('especie')).'-'.$request->file('imagen')->getClientOriginalExtension();
+            // Creamos el slug a partir de la especie
+            $animal->slug = Str::slug($animal->especie,'-');
+
+            //Guardar la ruta relativa en el modelo
+            $animal->imagen= $filename;
+        }
 
         // Guardamos el modelo en la base de datos
         $animal->save();
 
         // Redirigimos a la vista de detalles del animal creado
-        return view('animales.show');
+        return redirect()->route('animales.show', $animal->slug)->with('success', 'Animal guardado correctamente');
     }
 
 
@@ -112,22 +123,35 @@ class AnimalController extends Controller
      */
     public function update(CrearAnimalRequest $request, Animal $animal)
     {
-        // Usamos el animal pasado por parámetro para actualizar sus atributos
+        $request->validated();
+        // Creamos la instancia del nuevo animal
+        $animal = new Animal();
+        $animal->fill($request->all());
+
+        // Asignamos los campos validados a cada atributo
         $animal->especie = $request->input('especie');
         $animal->peso = $request->input('peso');
         $animal->altura = $request->input('altura');
         $animal->fechaNacimiento = $request->input('fechaNacimiento');
+        $animal->descripcion = $request->input('descripcion');
 
-        // Modificar la imagen solo si se sube una nueva
-        if ($request->hasFile('imagen')) {
-            $animal->imagen = $request->file('imagen')->store('imagenes');
+        //Ruta donde se guardaran las imagenes
+        if($request->hasFile('imagen')){
+            $destinationPath = public_path('assets/imagenes');
+            //Generar el nombre del arhchivo basado en al especie
+            $filename = Str::slug($request->input('especie')).'-'.$request->file('imagen')->getClientOriginalExtension();
+            // Creamos el slug a partir de la especie
+            $animal->slug = Str::slug($animal->especie,'-');
+
+            //Guardar la ruta relativa en el modelo
+            $animal->imagen= $filename;
         }
 
-        // Guardamos los cambios en la base de datos
+        // Guardamos el modelo en la base de datos
         $animal->save();
 
-        // Redirigimos a la vista de detalles del animal editado
-        return view('animales.show', $animal->id);
+        // Redirigimos a la vista de detalles del animal creado
+        return redirect()->route('animales.show', $animal->slug)->with('success', 'Animal guardado correctamente');
     }
 
     /**

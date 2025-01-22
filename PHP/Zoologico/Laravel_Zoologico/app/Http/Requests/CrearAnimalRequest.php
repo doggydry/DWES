@@ -30,7 +30,6 @@ class CrearAnimalRequest extends FormRequest
             'peso'=>'required',
             'altura'=>'required',
             'fechaNacimiento'=>'required|min:3',
-
             'imagen'=>'required|mimes:jpeg,png,jpg,svg'
         ];
     }
@@ -38,10 +37,12 @@ class CrearAnimalRequest extends FormRequest
     public function messages()
 {
     return [
-        'especie.required' => 'El nombre no puede ser vacío ni tener menos de 3 caracteres',
+        'especie.required' => 'El nombre no puede estar vacío',
+        'especie.min' => 'El nombre no puede tener menos de 3 caracteres',
         'peso.required' => 'El peso no puede ser vacío',
         'altura.required' => 'La altura no puede ser vacía',
         'fechaNacimiento.required' => 'La fecha de nacimiento no puede estar vacía',
+        'fechaNacimiento.min' => 'Debe tener minimo tres digitos',
         'imagen.required' => 'Debe subir una imagen',
         'imagen.mimes' => 'Formatos válidos: jpeg, png, jpg y svg',
     ];

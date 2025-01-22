@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('fechaNacimiento'); // Fecha de nacimiento
             $table->string('imagen')->nullable(); // Puede ser null
             $table->string('alimentacion',20)->nullable(); // Longitud maxima 20 y puede ser null
-            $table->longText('descripcion')->nullable(); // Puede ser null
+            $table->text('descripcion')->nullable(); // Puede ser null
         });
     }
 
