@@ -97,17 +97,17 @@ class AnimalController extends Controller
         $animal->fechaNacimiento = $request->input('fechaNacimiento');
         $animal->descripcion = $request->input('descripcion');
 
-        //Ruta donde se guardaran las imagenes
-        if($request->hasFile('imagen')){
-            $destinationPath = public_path('assets/imagenes');
-            //Generar el nombre del arhchivo basado en al especie
-            $filename = Str::slug($request->input('especie')).'-'.$request->file('imagen')->getClientOriginalExtension();
-            // Creamos el slug a partir de la especie
-            $animal->slug = Str::slug($animal->especie,'-');
 
-            //Guardar la ruta relativa en el modelo
-            $animal->imagen= $filename;
-        }
+        $filename = Str::slug($request->input('especie')) . '.' . $request->file('imagen')->getClientOriginalExtension();
+        //Generar el nombre del arhchivo basado en al especie
+        $request->file('imagen')->storeAs('',$filename,'animales');
+
+        // Creamos el slug a partir de la especie
+        $animal->slug = Str::slug($animal->especie);
+
+        //Guardar la ruta relativa en el modelo
+        $animal->imagen = $filename;
+
 
         // Guardamos el modelo en la base de datos
         $animal->save();
@@ -135,17 +135,17 @@ class AnimalController extends Controller
         $animal->fechaNacimiento = $request->input('fechaNacimiento');
         $animal->descripcion = $request->input('descripcion');
 
-        //Ruta donde se guardaran las imagenes
-        if($request->hasFile('imagen')){
-            $destinationPath = public_path('assets/imagenes');
-            //Generar el nombre del arhchivo basado en al especie
-            $filename = Str::slug($request->input('especie')).'-'.$request->file('imagen')->getClientOriginalExtension();
-            // Creamos el slug a partir de la especie
-            $animal->slug = Str::slug($animal->especie,'-');
 
-            //Guardar la ruta relativa en el modelo
-            $animal->imagen= $filename;
-        }
+        $filename = Str::slug($request->input('especie')) . '.' . $request->file('imagen')->getClientOriginalExtension();
+        //Generar el nombre del arhchivo basado en al especie
+        $request->file('imagen')->storeAs('',$filename,'animales');
+
+        // Creamos el slug a partir de la especie
+        $animal->slug = Str::slug($animal->especie);
+
+        //Guardar la ruta relativa en el modelo
+        $animal->imagen = $filename;
+
 
         // Guardamos el modelo en la base de datos
         $animal->save();
