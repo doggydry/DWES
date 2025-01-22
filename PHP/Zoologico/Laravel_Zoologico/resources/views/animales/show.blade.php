@@ -18,7 +18,7 @@
     </div>
     <div class="w-full md:w-1/2">
         {{-- Imagen del animal --}}
-        <img src="{{ asset('assets/images/'.$animal->slug.'.jpg') }}" alt="{{ $animal->especie }}" class="h-80 w-80 object-cover rounded-lg shadow-lg">
+        <img src="{{ asset('assets/imagenes/'.$animal->slug.'.jpg') }}" alt="{{ $animal->especie }}" class="h-80 w-80 object-cover rounded-lg shadow-lg">
     </div>
 </div>
 

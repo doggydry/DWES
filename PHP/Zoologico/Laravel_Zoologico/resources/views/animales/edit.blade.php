@@ -17,7 +17,7 @@
     </div>
     <div class="w-full md:w-1/2">
         {{-- Imagen del animal --}}
-        <img src="{{ asset('assets/images/'.$animal->slug.'.jpg') }}" alt="{{ $animal->especie }}" class="h-48 w-48 object-cover rounded-lg shadow-lg">
+        <img src="{{ asset('assets/imagenes/'.$animal->slug.'.jpg') }}" alt="{{ $animal->especie }}" class="h-48 w-48 object-cover rounded-lg shadow-lg">
     </div>
 </div>
 
@@ -59,7 +59,7 @@
 
     <div class="mb-4">
         <label for="descripcion" class="block text-lg font-semibold text-gray-700">Descripción</label>
-        <textarea name="descripcion" id="descripcion" rows="4" value="{{$animal->descripcion}}" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+        <textarea name="descripcion" id="descripcion" rows="4" value="{{$animal->descripcion}}" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
     </div>
 
     <div class="mb-4 text-center">

@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Http\Requests\CrearAnimalRequest;
 use Illuminate\Http\Request;
 use App\Models\Animal;
@@ -85,20 +86,23 @@ class AnimalController extends Controller
     public function store(CrearAnimalRequest $request)
     {
         // Creamos la instancia del nuevo animal
-        $a = new Animal();
+        $animal = new Animal();
 
         // Asignamos los campos validados a cada atributo
-        $a->especie = $request->input('especie');
-        $a->peso = $request->input('peso');
-        $a->altura = $request->input('altura');
-        $a->fechaNacimiento = $request->input('fechaNacimiento');
-        $a->imagen = $request->file('imagen')->store('imagenes');
+        $animal->especie = $request->input('especie');
+        $animal->peso = $request->input('peso');
+        $animal->altura = $request->input('altura');
+        $animal->fechaNacimiento = $request->input('fechaNacimiento');
+        $animal->imagen = $request->file('imagen')->store('imagenes');
+
+        // Creamos el slug a partir de la espeice
+        $animal->slug = Str::slug($animal->especie,'-');
 
         // Guardamos el modelo en la base de datos
-        $a->save();
+        $animal->save();
 
         // Redirigimos a la vista de detalles del animal creado
-        return view('animales.show', $a->id);
+        return view('animales.show');
     }
 
 
