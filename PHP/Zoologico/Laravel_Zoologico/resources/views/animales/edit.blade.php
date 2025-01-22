@@ -24,7 +24,7 @@
 {{-- Formulario para editar el animal --}}
 <form action="{{ route('animales.update',$animal) }}" method="POST" enctype="multipart/form-data" class="mt-8 p-8 bg-gray-100 shadow-lg rounded-lg max-w-3xl mx-auto">
     @csrf
-
+    @method('put')
     <h2 class="text-3xl font-semibold text-center text-green-700 mb-6">Editar {{ $animal->especie }}</h2>
 
     <div class="mb-4">

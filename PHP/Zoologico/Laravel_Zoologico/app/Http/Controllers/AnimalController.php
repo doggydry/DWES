@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CrearAnimalRequest;
 use Illuminate\Http\Request;
 use App\Models\Animal;
+use Illuminate\Support\Facades\Redirect;
 
 class AnimalController extends Controller
 {
@@ -83,15 +84,47 @@ class AnimalController extends Controller
      */
     public function store(CrearAnimalRequest $request)
     {
+        // Creamos la instancia del nuevo animal
         $a = new Animal();
+
+        // Asignamos los campos validados a cada atributo
+        $a->especie = $request->input('especie');
+        $a->peso = $request->input('peso');
+        $a->altura = $request->input('altura');
+        $a->fechaNacimiento = $request->input('fechaNacimiento');
+        $a->imagen = $request->file('imagen')->store('imagenes');
+
+        // Guardamos el modelo en la base de datos
+        $a->save();
+
+        // Redirigimos a la vista de detalles del animal creado
+        return view('animales.show', $a->id);
     }
+
 
 
     /**
      * Le pasamos a la funcion la clase Request como parámetro a través de la inyección de dependencias.
      */
-    public function update(CrearAnimalRequest $request, string $id) {}
+    public function update(CrearAnimalRequest $request, Animal $animal)
+    {
+        // Usamos el animal pasado por parámetro para actualizar sus atributos
+        $animal->especie = $request->input('especie');
+        $animal->peso = $request->input('peso');
+        $animal->altura = $request->input('altura');
+        $animal->fechaNacimiento = $request->input('fechaNacimiento');
 
+        // Modificar la imagen solo si se sube una nueva
+        if ($request->hasFile('imagen')) {
+            $animal->imagen = $request->file('imagen')->store('imagenes');
+        }
+
+        // Guardamos los cambios en la base de datos
+        $animal->save();
+
+        // Redirigimos a la vista de detalles del animal editado
+        return view('animales.show', $animal->id);
+    }
 
     /**
      * Remove the specified resource from storage.

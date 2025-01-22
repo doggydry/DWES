@@ -15,7 +15,7 @@ class CrearAnimalRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -36,16 +36,15 @@ class CrearAnimalRequest extends FormRequest
     }
 
     public function messages()
-    {
-        return [
-            'especie.required'=>'El nombre no puede ser vacio ni tener menos de 3 caracteres',
-            'peso'=>'El peso no puede ser vacio',
-            'altura'=>'El altura no puede ser vacio',
-            'fechaNacimiento'=>'La fecha de nacimiento no puede estar vacia',
-            'imagen'=>'Formatos validos: jpeg,png,jpg y svg. No puede estar vacío',
+{
+    return [
+        'especie.required' => 'El nombre no puede ser vacío ni tener menos de 3 caracteres',
+        'peso.required' => 'El peso no puede ser vacío',
+        'altura.required' => 'La altura no puede ser vacía',
+        'fechaNacimiento.required' => 'La fecha de nacimiento no puede estar vacía',
+        'imagen.required' => 'Debe subir una imagen',
+        'imagen.mimes' => 'Formatos válidos: jpeg, png, jpg y svg',
+    ];
+}
 
-
-
-        ];
-    }
 }
