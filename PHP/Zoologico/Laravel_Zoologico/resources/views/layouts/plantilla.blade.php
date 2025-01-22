@@ -9,7 +9,7 @@
 </head>
 <body>
     @include('layouts.partials.nav')
-    <div class="container">
+    <div class="max-w-full mx-auto px-4">
         @yield('contenido')
     </div>
     @include('layouts.partials.footer')
