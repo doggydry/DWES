@@ -6,8 +6,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Http\Requests\CrearAnimalRequest;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Animal;
 use Illuminate\Support\Facades\Redirect;
+
 
 class AnimalController extends Controller
 {
@@ -20,7 +22,7 @@ class AnimalController extends Controller
         $animales = Animal::all();
 
         //Pasamos los datos a la vista
-        return view('animales.index', ['animales' => $animales]);
+        return view('animales.index', data: ['animales' => $animales]);
     }
 
 
@@ -29,7 +31,6 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
-
         //Pasamos la variable a la vista
         return view('animales.show', compact('animal'));
     }
@@ -78,7 +79,49 @@ class AnimalController extends Controller
     {
         return view('animales.create');
     }
+    //AQUI
+    /**
+     * Le pasamos a la funcion la clase Request como parámetro a través de la inyección de dependencias.
+     */
+    public function update(CrearAnimalRequest $request, Animal $animal)
+    {
+        // Validamos los datos del request
+        $request->validated();
 
+        // Actualizamos los campos básicos
+        $animal->especie = $request->input('especie');
+        $animal->peso = $request->input('peso');
+        $animal->altura = $request->input('altura');
+        $animal->fechaNacimiento = $request->input('fechaNacimiento');
+        $animal->alimentacion = $request->input('alimentacion');
+
+        $animal->descripcion = $request->input('descripcion');
+
+        // Verificamos si la especie ha cambiado para actualizar el slug
+        if (Str::slug($animal->especie) !== Str::slug($request->input('especie'))) {
+            $animal->slug = Str::slug($request->input('especie'));
+        }
+
+
+        // Verificamos si se ha subido una nueva imagen
+        if ($request->hasFile('imagen')) {
+            //*IMPORTANTE GUARDAR EL SLUG AL GUARDAR EL ARCHIVO
+            $animal->slug = Str::slug($request->input('especie')); // Actualiza el slug
+            $filename = Str::slug($request->input('especie')) . '.' . $request->file('imagen')->getClientOriginalExtension();
+
+            // Guardamos la nueva imagen
+            $request->file('imagen')->storeAs('', $filename, 'animales');
+
+            // Actualizamos la ruta de la imagen
+            $animal->imagen = $filename;
+        }
+
+        // Guardamos los cambios en la base de datos
+        $animal->save();
+
+        // Redirigimos a la vista de detalles del animal actualizado
+        return redirect()->route('animales.show', $animal->slug)->with('success', 'Animal actualizado correctamente');
+    }
 
     /**
      * Le pasamos a la funcion la clase Request como parametro.
@@ -100,7 +143,7 @@ class AnimalController extends Controller
 
         $filename = Str::slug($request->input('especie')) . '.' . $request->file('imagen')->getClientOriginalExtension();
         //Generar el nombre del arhchivo basado en al especie
-        $request->file('imagen')->storeAs('',$filename,'animales');
+        $request->file('imagen')->storeAs('', $filename, 'animales');
 
         // Creamos el slug a partir de la especie
         $animal->slug = Str::slug($animal->especie);
@@ -118,43 +161,6 @@ class AnimalController extends Controller
 
 
 
-    /**
-     * Le pasamos a la funcion la clase Request como parámetro a través de la inyección de dependencias.
-     */
-    public function update(CrearAnimalRequest $request, Animal $animal)
-{
-    // Validamos los datos del request
-    $request->validated();
-
-    // Actualizamos los campos básicos
-    $animal->especie = $request->input('especie');
-    $animal->peso = $request->input('peso');
-    $animal->altura = $request->input('altura');
-    $animal->fechaNacimiento = $request->input('fechaNacimiento');
-    $animal->descripcion = $request->input('descripcion');
-
-    // Verificamos si la especie ha cambiado para actualizar el slug
-    if ($animal->especie !== $request->input('especie')) {
-        $animal->slug = Str::slug($request->input('especie'));
-    }
-
-    // Verificamos si se ha subido una nueva imagen
-    if ($request->hasFile('imagen')) {
-        $filename = Str::slug($request->input('especie')) . '.' . $request->file('imagen')->getClientOriginalExtension();
-
-        // Guardamos la nueva imagen
-        $request->file('imagen')->storeAs('', $filename, 'animales');
-
-        // Actualizamos la ruta de la imagen
-        $animal->imagen = $filename;
-    }
-
-    // Guardamos los cambios en la base de datos
-    $animal->save();
-
-    // Redirigimos a la vista de detalles del animal actualizado
-    return redirect()->route('animales.show', $animal->slug)->with('success', 'Animal actualizado correctamente');
-}
 
 
     /**

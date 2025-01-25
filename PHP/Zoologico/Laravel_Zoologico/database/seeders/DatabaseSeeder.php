@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,16 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Borrar todos los usuarios existentes
+        DB::table('users')->delete();
 
-        // Desde este metodo de DatabaseSeeder llamamos a nuestro seeder creado
-        DB::table('animals')->delete();
-        $this->call(AnimalSeeder::class);
+        // Llamar al seeder de usuarios
+        $this->call(UserSeeder::class);
 
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Crear 5 usuarios adicionales usando el factory
+        User::factory(5)->create();
     }
 }
+// Creamos el Factory usando el siguiente comando:
+// php artisan make:factory UserFactory --model=User
+// --model=User: con esto hacemos que el factory referencie al modelo User,
+// esto hace que el factory se configure correctamente para este modelo
+// Usamos el comando que procesa las semillas: php artisan db:seed:
+// Esto borrará los usuarios existentes, ejecutará UserSeeder para crear un usuario específico,
+// y luego generará 5 usuarios adicionales utilizando el factory.
