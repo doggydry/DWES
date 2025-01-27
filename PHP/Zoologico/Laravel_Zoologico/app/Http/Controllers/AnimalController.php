@@ -146,7 +146,6 @@ class AnimalController extends Controller
         //Guardar la ruta relativa en el modelo
         $animal->imagen = $filename;
 
-
         // Guardamos el modelo en la base de datos
         $animal->save();
 
