@@ -21,13 +21,11 @@ class CrearRevisionRequest extends FormRequest
      */
     public function rules(): array
     {
-
         return [
             'fecha'=>'required|date',
             'descripcion'=>'required|string|min:5|max:1000'
         ];
     }
-
     public function messages()
     {
         return [
@@ -37,7 +35,6 @@ class CrearRevisionRequest extends FormRequest
             'descripcion.string'=>'Solo se permite texto',
             'descripcion.min'=>'Caracteres mínimos:5',
             'descripcion.max'=>'Caracteres máximos:1000',
-
         ];
     }
 }
