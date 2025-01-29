@@ -16,7 +16,8 @@ Route::put('animales/{animal}', [AnimalController::class, 'update'])->name('anim
 
 // Rutas para el controlador Revisiones
 Route::get('revisiones/{animal}/crear', [RevisionesController::class, 'create'])->name('revisiones.createRevision');
-Route::post('animales/{animal}', [RevisionesController::class, 'store'])->name('revisiones.store');
+Route::post('revisiones/{animal}', [RevisionesController::class, 'store'])->name('revisiones.store');
+
 
 
 

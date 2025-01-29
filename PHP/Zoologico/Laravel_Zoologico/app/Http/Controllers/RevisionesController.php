@@ -30,17 +30,17 @@ class RevisionesController extends Controller
      */
     public function store(CrearRevisionRequest $request, Animal $animal)
     {
-       $request->validated();
+        $request->validated();
 
-       $animal = new Animal();
-       $animal->fill($request->all());
+        // Crear la revisión asociada al animal
+        $revision = new Revision();
+        $revision->fill($request->all());
+        $revision->animal_id = $animal->id; // Asociamos la revisión al animal correcto
+        $revision->save();
 
-       $animal->save();
-
-       return redirect()->route('animales.show', $animal->slug)->with('success', 'Revision guardado correctamente');
-
-
+        return redirect()->route('animales.show', $animal->slug)->with('success', 'Revisión guardada correctamente');
     }
+
 
     /**
      * Display the specified resource.

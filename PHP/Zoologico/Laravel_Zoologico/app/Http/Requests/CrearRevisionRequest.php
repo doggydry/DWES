@@ -21,25 +21,20 @@ class CrearRevisionRequest extends FormRequest
      */
     public function rules(): array
     {
-        $animal = Animal::findOrFail($this->route('slug'));
-        $fechaNacimiento = $animal->fechaNacimiento;
         return [
-            'fecha'=>'required|date|after_or_equal:$fechaNacimiento',
+            'fecha'=>'required|date',
             'descripcion'=>'required|string|min:5|max:1000'
         ];
     }
-
     public function messages()
     {
         return [
             'fecha.required'=>'Este campo es obligatorio',
             'fecha.date'=>'El campo de fecha debe tener formato de fecha',
-            'fecha.after_or_equal'=>'La revision no puede ser anterior al nacimiento del animal',
             'descripcion.required'=>'Este campo es obligatorio',
             'descripcion.string'=>'Solo se permite texto',
             'descripcion.min'=>'Caracteres mínimos:5',
             'descripcion.max'=>'Caracteres máximos:1000',
-
         ];
     }
 }
