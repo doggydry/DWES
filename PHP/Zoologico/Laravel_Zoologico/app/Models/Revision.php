@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Revision extends Model
 {
+    protected $table = 'animales_revisiones';
     protected $fillable = ['animal_id', 'fecha', 'descripcion'];
 
     /**

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Animal;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Http\Controllers\RevisionesController;
 
 class AnimalController extends Controller
 {
@@ -32,6 +32,7 @@ class AnimalController extends Controller
     public function show(Animal $animal)
     {
         //Pasamos la variable a la vista
+        $animal->load('revisiones');
         return view('animales.show', compact('animal'));
     }
 
@@ -129,28 +130,23 @@ class AnimalController extends Controller
     public function store(CrearAnimalRequest $request)
     {
         $request->validated();
+
         // Creamos la instancia del nuevo animal
         $animal = new Animal();
+
+        // Asignamos los datos del request de manera masiva
         $animal->fill($request->all());
 
-        // Asignamos los campos validados a cada atributo
-        $animal->especie = $request->input('especie');
-        $animal->peso = $request->input('peso');
-        $animal->altura = $request->input('altura');
-        $animal->fechaNacimiento = $request->input('fechaNacimiento');
-        $animal->descripcion = $request->input('descripcion');
-
-
+        // Procesamos algunos campos adicionales
         $filename = Str::slug($request->input('especie')) . '.' . $request->file('imagen')->getClientOriginalExtension();
-        //Generar el nombre del arhchivo basado en al especie
+        // Generar el nombre del archivo basado en la especie
         $request->file('imagen')->storeAs('', $filename, 'animales');
 
         // Creamos el slug a partir de la especie
         $animal->slug = Str::slug($animal->especie);
 
-        //Guardar la ruta relativa en el modelo
+        // Guardamos la ruta relativa de la imagen
         $animal->imagen = $filename;
-
 
         // Guardamos el modelo en la base de datos
         $animal->save();

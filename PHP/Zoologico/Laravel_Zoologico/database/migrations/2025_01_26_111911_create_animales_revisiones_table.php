@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('animales_revisiones', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('animal_id');
+            // Cambiamos a 'foreignId' para que sea más limpio y automático
+            $table->foreignId('animal_id')->constrained()->onDelete('cascade');
             $table->date('fecha');
             $table->text('descripcion');
             $table->timestamps();
-
-               // Clave foránea a la tabla animales
-               $table->foreign('animal_id')->references('id')->on('animales')->onDelete('cascade');
         });
     }
 
