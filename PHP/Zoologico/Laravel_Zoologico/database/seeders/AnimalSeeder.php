@@ -119,6 +119,11 @@ Son diurnos y viven preferentemente en el suelo. Forman grupos numerosos que se 
             $a->alimentacion = $animal['alimentacion'];
             $a->descripcion = $animal['descripcion'];
             $a->save(); // Guarda los datos del modelo $a como un nuevo registro en la tabla animals
+
+            $a->cuidadores()->attach([
+                rand(1,10),
+                rand(11,20)
+            ]);
         }
         $this->command->info('Tabla animales inicializada con datos'); //Mensaje para confirmar que se ha realizado la inserccion con exito
     }

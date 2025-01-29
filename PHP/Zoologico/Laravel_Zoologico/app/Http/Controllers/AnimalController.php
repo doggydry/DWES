@@ -33,6 +33,7 @@ class AnimalController extends Controller
     {
         //Pasamos la variable a la vista
         $animal->load('revisiones');
+        $animal->load('cuidadores');
         return view('animales.show', compact('animal'));
     }
 
