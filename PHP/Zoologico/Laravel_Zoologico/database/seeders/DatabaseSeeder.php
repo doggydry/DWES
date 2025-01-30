@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Cuidador;
+use App\Models\Titulacion;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,15 @@ class DatabaseSeeder extends Seeder
         // Crear 5 usuarios adicionales usando el factory
         User::factory(5)->create();
 
+        //Agregamos 20 titulaciones
+        Titulacion::factory(20)->create();
+
+
+        //Agregamos 20 cuidadores
         Cuidador::factory(20)->create();
+
+
+
     }
 }
 // Creamos el Factory usando el siguiente comando:

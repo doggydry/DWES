@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->foreignId('id_titulacion1')->nullable()->constrained('titulacion')->onDelete('cascade');
+            $table->foreignId('id_titulacion2')->nullable()->constrained('titulacion')->onDelete('cascade');
             $table->timestamps();
         });
     }

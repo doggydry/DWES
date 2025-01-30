@@ -52,7 +52,7 @@
                     </h2>
                     <ul class="space-y-2 text-gray-700">
                         @forelse ($animal->cuidadores as $cuidador)
-                            <li><strong>Nombre:</strong> {{ $cuidador->name }}</li>
+                            <li><a href="{{route('cuidador.show',$cuidador)}}"<strong>Nombre:</strong> {{ $cuidador->name }}</a></li>
                         @empty
                             <p class="text-gray-500 italic">Este animal no tiene cuidadores asignados.</p>
                         @endforelse
@@ -61,7 +61,7 @@
 
                     {{-- Botón para añadir una nueva revisión --}}
                     <div class="flex space-x-4 mt-6">
-                        <a href="{{ route('revisiones.createRevision', $animal->slug) }}"
+                        <a href="{{ route('revisiones.createRevision', $animal) }}"
                             class="inline-block px-6 py-3 bg-green-600 text-white text-lg font-semibold rounded-md shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                             Añadir Revisión
                         </a>
